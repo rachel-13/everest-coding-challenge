@@ -20,7 +20,7 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 2. Decimals are fair game, e.g. if a 5% discount ends up with decimals like $5.7123, it would be fair to display rounded numbers into the nearest ten-cent which is $5.70. Idea came from a business perspective where customers would not want to be charged an extra $0.30 and the business should not lose $0.70.
 3. The first line is critical metadata (base weight and no. of packages) that should be accurate to continue the business logic, hence there should be a way to retain it while the program runs, and also to ensure its accuracy. This should be a reversible error that the customer should be able to correct.
 4. There will be a model that mimicks all the information from the Offer table in the PDF document. The business logic should have a dictionary of this structure with the OfferID as the key.
-5. There will also be a model that stores the package information from the user input.
+5. There will also be a model that stores the package information from the user inpu and another that stores package costs.
 6. There will be a class that checks if discount is applicable, and if yes, return the discount amount. Ideally, the Offer dictionary should reside in this class.
 7. All data to live in memory i.e. no caching into text file
 8. Will need a `readLine()` function in a `while-loop` to keep the program waiting for input until all packages are accounted for
