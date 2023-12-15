@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		5E2A3CE42B2B68390091D200 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* main.swift */; };
 		5E2A3CF12B2B68520091D200 /* EverestPackageDeliveryCLITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF02B2B68520091D200 /* EverestPackageDeliveryCLITests.swift */; };
+		5E2A3CF72B2C587D0091D200 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF62B2C587D0091D200 /* Offer.swift */; };
+		5E2A3CF92B2C58AF0091D200 /* PackageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */; };
+		5E2A3CFB2B2C5B4D0091D200 /* PackageCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +31,9 @@
 		5E2A3CE32B2B68390091D200 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5E2A3CEE2B2B68520091D200 /* EverestPackageDeliveryCLITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EverestPackageDeliveryCLITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2A3CF02B2B68520091D200 /* EverestPackageDeliveryCLITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverestPackageDeliveryCLITests.swift; sourceTree = "<group>"; };
+		5E2A3CF62B2C587D0091D200 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
+		5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageInfo.swift; sourceTree = "<group>"; };
+		5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCost.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +75,7 @@
 		5E2A3CE22B2B68390091D200 /* EverestPackageDeliveryCLI */ = {
 			isa = PBXGroup;
 			children = (
+				5E2A3CF52B2C584E0091D200 /* Models */,
 				5E2A3CE32B2B68390091D200 /* main.swift */,
 			);
 			path = EverestPackageDeliveryCLI;
@@ -80,6 +87,16 @@
 				5E2A3CF02B2B68520091D200 /* EverestPackageDeliveryCLITests.swift */,
 			);
 			path = EverestPackageDeliveryCLITests;
+			sourceTree = "<group>";
+		};
+		5E2A3CF52B2C584E0091D200 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5E2A3CF62B2C587D0091D200 /* Offer.swift */,
+				5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */,
+				5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -171,6 +188,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E2A3CF92B2C58AF0091D200 /* PackageInfo.swift in Sources */,
+				5E2A3CFB2B2C5B4D0091D200 /* PackageCost.swift in Sources */,
+				5E2A3CF72B2C587D0091D200 /* Offer.swift in Sources */,
 				5E2A3CE42B2B68390091D200 /* main.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
