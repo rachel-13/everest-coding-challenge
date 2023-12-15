@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5E2A3CE42B2B68390091D200 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* main.swift */; };
+		5E2A3CF12B2B68520091D200 /* EverestPackageDeliveryCLITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF02B2B68520091D200 /* EverestPackageDeliveryCLITests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,10 +26,19 @@
 /* Begin PBXFileReference section */
 		5E2A3CE02B2B68390091D200 /* EverestPackageDeliveryCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EverestPackageDeliveryCLI; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2A3CE32B2B68390091D200 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5E2A3CEE2B2B68520091D200 /* EverestPackageDeliveryCLITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EverestPackageDeliveryCLITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5E2A3CF02B2B68520091D200 /* EverestPackageDeliveryCLITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EverestPackageDeliveryCLITests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		5E2A3CDD2B2B68390091D200 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E2A3CEB2B2B68520091D200 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				5E2A3CE22B2B68390091D200 /* EverestPackageDeliveryCLI */,
+				5E2A3CEF2B2B68520091D200 /* EverestPackageDeliveryCLITests */,
 				5E2A3CE12B2B68390091D200 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,6 +61,7 @@
 			isa = PBXGroup;
 			children = (
 				5E2A3CE02B2B68390091D200 /* EverestPackageDeliveryCLI */,
+				5E2A3CEE2B2B68520091D200 /* EverestPackageDeliveryCLITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -60,6 +72,14 @@
 				5E2A3CE32B2B68390091D200 /* main.swift */,
 			);
 			path = EverestPackageDeliveryCLI;
+			sourceTree = "<group>";
+		};
+		5E2A3CEF2B2B68520091D200 /* EverestPackageDeliveryCLITests */ = {
+			isa = PBXGroup;
+			children = (
+				5E2A3CF02B2B68520091D200 /* EverestPackageDeliveryCLITests.swift */,
+			);
+			path = EverestPackageDeliveryCLITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -82,6 +102,23 @@
 			productReference = 5E2A3CE02B2B68390091D200 /* EverestPackageDeliveryCLI */;
 			productType = "com.apple.product-type.tool";
 		};
+		5E2A3CED2B2B68520091D200 /* EverestPackageDeliveryCLITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5E2A3CF22B2B68520091D200 /* Build configuration list for PBXNativeTarget "EverestPackageDeliveryCLITests" */;
+			buildPhases = (
+				5E2A3CEA2B2B68520091D200 /* Sources */,
+				5E2A3CEB2B2B68520091D200 /* Frameworks */,
+				5E2A3CEC2B2B68520091D200 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EverestPackageDeliveryCLITests;
+			productName = EverestPackageDeliveryCLITests;
+			productReference = 5E2A3CEE2B2B68520091D200 /* EverestPackageDeliveryCLITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -93,6 +130,9 @@
 				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					5E2A3CDF2B2B68390091D200 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+					5E2A3CED2B2B68520091D200 = {
 						CreatedOnToolsVersion = 15.0;
 					};
 				};
@@ -111,9 +151,20 @@
 			projectRoot = "";
 			targets = (
 				5E2A3CDF2B2B68390091D200 /* EverestPackageDeliveryCLI */,
+				5E2A3CED2B2B68520091D200 /* EverestPackageDeliveryCLITests */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5E2A3CEC2B2B68520091D200 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		5E2A3CDC2B2B68390091D200 /* Sources */ = {
@@ -121,6 +172,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E2A3CE42B2B68390091D200 /* main.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5E2A3CEA2B2B68520091D200 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E2A3CF12B2B68520091D200 /* EverestPackageDeliveryCLITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -267,6 +326,46 @@
 			};
 			name = Release;
 		};
+		5E2A3CF32B2B68520091D200 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8NM54NQ7DU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rachelfpy.EverestPackageDeliveryCLITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5E2A3CF42B2B68520091D200 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8NM54NQ7DU;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rachelfpy.EverestPackageDeliveryCLITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -284,6 +383,15 @@
 			buildConfigurations = (
 				5E2A3CE82B2B68390091D200 /* Debug */,
 				5E2A3CE92B2B68390091D200 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5E2A3CF22B2B68520091D200 /* Build configuration list for PBXNativeTarget "EverestPackageDeliveryCLITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5E2A3CF32B2B68520091D200 /* Debug */,
+				5E2A3CF42B2B68520091D200 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
