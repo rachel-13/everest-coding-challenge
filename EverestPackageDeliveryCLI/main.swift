@@ -7,5 +7,17 @@
 
 import Foundation
 
-
+class PackageDelivery {
+  
+  var isMetadataSet = false
+  
+  init() {
+    
+  }
+  
+  func setupMetadata() {
+    isMetadataSet = true
+  }
+  
+}
 
