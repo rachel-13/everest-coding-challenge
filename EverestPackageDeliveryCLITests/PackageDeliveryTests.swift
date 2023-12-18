@@ -1,5 +1,5 @@
 //
-//  EverestPackageDeliveryCLITests.swift
+//  PackageDeliveryTests.swift
 //  EverestPackageDeliveryCLITests
 //
 //  Created by pohz on 15/12/2023.
@@ -8,14 +8,16 @@
 import XCTest
 @testable import EverestPackageDeliveryCLI
 
-final class EverestPackageDeliveryCLITests: XCTestCase {
+final class PackageDeliveryTests: XCTestCase {
   
   var sut: PackageDelivery!
   var mockErrorHandler: MockErrorHandler!
+  var mockDiscountManager: MockDiscountManager!
   
   override func setUp() {
     mockErrorHandler = MockErrorHandler()
-    sut = PackageDelivery(errorHandler: mockErrorHandler)
+    mockDiscountManager = MockDiscountManager()
+    sut = PackageDelivery(errorHandler: mockErrorHandler, discountManager: mockDiscountManager)
   }
   
   func testMetadataIsValid() {

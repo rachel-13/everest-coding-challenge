@@ -12,16 +12,18 @@ class PackageDelivery {
   var isMetadataSet = false
   var numberOfPackages: Int?
   var baseWeight: Int?
-  var errorHandler: ErrorHandlerProtocol
+  let errorHandler: ErrorHandlerProtocol
+  let discountManager: DiscountManagerProtocol
   
-  init(errorHandler: ErrorHandlerProtocol) {
+  init(errorHandler: ErrorHandlerProtocol, discountManager: DiscountManagerProtocol) {
     self.errorHandler = errorHandler
+    self.discountManager = discountManager
   }
   
   func run() {
-    #if !TEST
+#if !TEST
     promptForInput()
-    #endif
+#endif
   }
   
   private func promptForInput() {
@@ -71,6 +73,32 @@ class PackageDelivery {
 }
 
 
+let offer1 = Offer(offerID: "OFR001",
+                   lowerBoundWeightInKg: 70,
+                   upperBoundWeightInKg: 200,
+                   lowerBoundDistanceInKm: 0,
+                   upperBoundDistanceInKm: 200,
+                   discountRateInPercent: 5)
+
+let offer2 = Offer(offerID: "OFR002",
+                   lowerBoundWeightInKg: 100,
+                   upperBoundWeightInKg: 250,
+                   lowerBoundDistanceInKm: 50,
+                   upperBoundDistanceInKm: 150,
+                   discountRateInPercent: 7)
+
+let offer3 = Offer(offerID: "OFR003",
+                   lowerBoundWeightInKg: 10,
+                   upperBoundWeightInKg: 150,
+                   lowerBoundDistanceInKm: 50,
+                   upperBoundDistanceInKm: 250,
+                   discountRateInPercent: 7)
+let discountManager = DiscountManager()
+discountManager.insertOffer(offer: offer1)
+discountManager.insertOffer(offer: offer2)
+discountManager.insertOffer(offer: offer3)
+
+
 let errorHandler = ErrorHandler()
-let packageDelivery = PackageDelivery(errorHandler: errorHandler)
+let packageDelivery = PackageDelivery(errorHandler: errorHandler, discountManager: discountManager)
 packageDelivery.run()

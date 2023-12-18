@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Offer {
+public struct Offer {
   let offerID: String
   let lowerBoundWeightInKg: Int
   let upperBoundWeightInKg: Int
