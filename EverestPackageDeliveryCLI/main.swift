@@ -15,14 +15,16 @@ class PackageDelivery {
   
   init() {
     
+  }
+  
+  func run() {
     #if !TEST
     promptForInput()
     #endif
   }
   
-  
   private func promptForInput() {
-    
+    print("Welcome to Package Delivery system. Type 'quit' to exit.")
     while let line = readLine() {
       
       if line == "quit" {
@@ -57,3 +59,5 @@ class PackageDelivery {
   
 }
 
+let packageDelivery = PackageDelivery()
+packageDelivery.run()
