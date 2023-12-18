@@ -16,8 +16,23 @@ public protocol DiscountManagerProtocol {
 class DiscountManager: DiscountManagerProtocol {
   
   private var offerDictionary = [String: Offer]()
+  let errorHandler: ErrorHandlerProtocol
+  
+  init(errorHandler: ErrorHandlerProtocol) {
+    self.errorHandler = errorHandler
+  }
   
   func insertOffer(offer: Offer) {
+    
+    guard offer.lowerBoundWeightInKg >= 0,
+          offer.upperBoundWeightInKg >= 0,
+          offer.lowerBoundDistanceInKm >= 0,
+          offer.upperBoundDistanceInKm >= 0,
+          offer.discountRateInPercent >= 0 else {
+      errorHandler.displayError(error: SystemError.negativeNumerics)
+      return
+    }
+    
     offerDictionary[offer.offerID.uppercased()] = offer
   }
   
@@ -29,7 +44,7 @@ class DiscountManager: DiscountManagerProtocol {
     guard let validOffer = getOffer(withId: offerId) else {
       return 0
     }
-    let discountRate = Double(validOffer.discountRateInPercent)/100.0
+    let discountRate = validOffer.discountRateInPercent/100
     return discountRate * originalDeliveryCost
   }
   

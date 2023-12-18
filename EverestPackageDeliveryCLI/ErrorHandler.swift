@@ -10,6 +10,7 @@ import Foundation
 public enum SystemError: Error, Equatable {
   case incorrectArgument
   case incorrectDataType
+  case negativeNumerics
 }
 
 public protocol ErrorHandlerProtocol {
@@ -23,6 +24,8 @@ class ErrorHandler: ErrorHandlerProtocol {
         print("Please ensure there are 2 values in the input")
       case .incorrectDataType:
         print("Please ensure that the values are in the form of numbers")
+      case .negativeNumerics:
+        print("Please ensure numerics are postive values")
     }
   }
 }

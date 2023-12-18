@@ -13,5 +13,5 @@ public struct Offer {
   let upperBoundWeightInKg: Int
   let lowerBoundDistanceInKm: Int
   let upperBoundDistanceInKm: Int
-  let discountRateInPercent: Int
+  let discountRateInPercent: Double
 }

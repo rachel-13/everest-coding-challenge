@@ -72,6 +72,8 @@ class PackageDelivery {
   }
 }
 
+// MARK: Program Setup and Entry Point
+let errorHandler = ErrorHandler()
 
 let offer1 = Offer(offerID: "OFR001",
                    lowerBoundWeightInKg: 70,
@@ -93,12 +95,10 @@ let offer3 = Offer(offerID: "OFR003",
                    lowerBoundDistanceInKm: 50,
                    upperBoundDistanceInKm: 250,
                    discountRateInPercent: 7)
-let discountManager = DiscountManager()
+let discountManager = DiscountManager(errorHandler: errorHandler)
 discountManager.insertOffer(offer: offer1)
 discountManager.insertOffer(offer: offer2)
 discountManager.insertOffer(offer: offer3)
 
-
-let errorHandler = ErrorHandler()
 let packageDelivery = PackageDelivery(errorHandler: errorHandler, discountManager: discountManager)
 packageDelivery.run()
