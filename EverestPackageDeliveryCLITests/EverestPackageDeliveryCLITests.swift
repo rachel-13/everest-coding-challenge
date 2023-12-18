@@ -11,28 +11,45 @@ import XCTest
 final class EverestPackageDeliveryCLITests: XCTestCase {
   
   var sut: PackageDelivery!
+  var mockErrorHandler: MockErrorHandler!
   
   override func setUp() {
-    sut = PackageDelivery()
+    mockErrorHandler = MockErrorHandler()
+    sut = PackageDelivery(errorHandler: mockErrorHandler)
   }
   
   func testMetadataIsValid() {
-    sut.setupMetadata(line: "100 3")
+    
+    sut.handleMetadata(line: "100 3")
+    
+    XCTAssertFalse(mockErrorHandler.didCallDisplayError)
     XCTAssertTrue(sut.isMetadataSet)
   }
   
   func testMetadataIsInvalid_wrongNumberOfArguments() {
-    sut.setupMetadata(line: "100 3 4")
+    
+    sut.handleMetadata(line: "100 3 4")
+    
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.incorrectArgument)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
     XCTAssertFalse(sut.isMetadataSet)
   }
   
   func testMetadataIsInvalid_baseweightWrongDataType() {
-    sut.setupMetadata(line: "abc 3")
+  
+    sut.handleMetadata(line: "abc 3")
+  
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.incorrectDataType)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
     XCTAssertFalse(sut.isMetadataSet)
   }
   
   func testMetadataIsInvalid_numberOfPackagesWrongDataType() {
-    sut.setupMetadata(line: "100 a")
+   
+    sut.handleMetadata(line: "100 a")
+   
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.incorrectDataType)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
     XCTAssertFalse(sut.isMetadataSet)
   }
   

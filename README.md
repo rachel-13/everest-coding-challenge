@@ -39,5 +39,6 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 
 9. Printing output will format the prices to 2 decimal values.
 
+10. Lump all errors into one enum category to miniimze complexity. Would love to be able to break it down into `InputError`, `DiscountError`, `PackageWeightError` for maintenance/logging purposes.
 
 
