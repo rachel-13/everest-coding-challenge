@@ -17,8 +17,23 @@ final class EverestPackageDeliveryCLITests: XCTestCase {
   }
   
   func testMetadataIsValid() {
-    sut.setupMetadata()
+    sut.setupMetadata(line: "100 3")
     XCTAssertTrue(sut.isMetadataSet)
+  }
+  
+  func testMetadataIsInvalid_wrongNumberOfArguments() {
+    sut.setupMetadata(line: "100 3 4")
+    XCTAssertFalse(sut.isMetadataSet)
+  }
+  
+  func testMetadataIsInvalid_baseweightWrongDataType() {
+    sut.setupMetadata(line: "abc 3")
+    XCTAssertFalse(sut.isMetadataSet)
+  }
+  
+  func testMetadataIsInvalid_numberOfPackagesWrongDataType() {
+    sut.setupMetadata(line: "100 a")
+    XCTAssertFalse(sut.isMetadataSet)
   }
   
   override func tearDown() {
