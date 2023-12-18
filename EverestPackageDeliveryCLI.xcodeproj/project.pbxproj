@@ -23,6 +23,9 @@
 		5ECFDFCB2B3038960009A6B9 /* DiscountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFCA2B3038960009A6B9 /* DiscountManager.swift */; };
 		5ECFDFCC2B303AA30009A6B9 /* DiscountManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFCA2B3038960009A6B9 /* DiscountManager.swift */; };
 		5ECFDFCE2B303C610009A6B9 /* DiscountManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFCD2B303C610009A6B9 /* DiscountManagerTests.swift */; };
+		5ECFDFD02B304E490009A6B9 /* CostManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFCF2B304E490009A6B9 /* CostManagerTests.swift */; };
+		5ECFDFD22B304EAD0009A6B9 /* CostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */; };
+		5ECFDFD32B304EAD0009A6B9 /* CostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,8 @@
 		5ECFDFC82B3038880009A6B9 /* MockDiscountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDiscountManager.swift; sourceTree = "<group>"; };
 		5ECFDFCA2B3038960009A6B9 /* DiscountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountManager.swift; sourceTree = "<group>"; };
 		5ECFDFCD2B303C610009A6B9 /* DiscountManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountManagerTests.swift; sourceTree = "<group>"; };
+		5ECFDFCF2B304E490009A6B9 /* CostManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostManagerTests.swift; sourceTree = "<group>"; };
+		5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +110,7 @@
 				5E2A3CE32B2B68390091D200 /* main.swift */,
 				5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */,
 				5ECFDFCA2B3038960009A6B9 /* DiscountManager.swift */,
+				5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */,
 			);
 			path = EverestPackageDeliveryCLI;
 			sourceTree = "<group>";
@@ -115,6 +121,7 @@
 				5ECFDFC72B3030540009A6B9 /* Mocks */,
 				5E2A3CF02B2B68520091D200 /* PackageDeliveryTests.swift */,
 				5ECFDFCD2B303C610009A6B9 /* DiscountManagerTests.swift */,
+				5ECFDFCF2B304E490009A6B9 /* CostManagerTests.swift */,
 			);
 			path = EverestPackageDeliveryCLITests;
 			sourceTree = "<group>";
@@ -228,6 +235,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECFDFD22B304EAD0009A6B9 /* CostManager.swift in Sources */,
 				5E2A3CF92B2C58AF0091D200 /* PackageInfo.swift in Sources */,
 				5E2A3CFB2B2C5B4D0091D200 /* PackageCost.swift in Sources */,
 				5ECFDFC02B3025940009A6B9 /* ErrorHandler.swift in Sources */,
@@ -242,10 +250,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5ECFDFCE2B303C610009A6B9 /* DiscountManagerTests.swift in Sources */,
+				5ECFDFD02B304E490009A6B9 /* CostManagerTests.swift in Sources */,
 				5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */,
 				5ECFDFCC2B303AA30009A6B9 /* DiscountManager.swift in Sources */,
 				5ECFDFC32B3026B90009A6B9 /* ErrorHandler.swift in Sources */,
 				5ECFDFC92B3038880009A6B9 /* MockDiscountManager.swift in Sources */,
+				5ECFDFD32B304EAD0009A6B9 /* CostManager.swift in Sources */,
 				5ECFDFB72B2FE98B0009A6B9 /* main.swift in Sources */,
 				5E2A3CF12B2B68520091D200 /* PackageDeliveryTests.swift in Sources */,
 				5ECFDFC62B3026BF0009A6B9 /* PackageCost.swift in Sources */,

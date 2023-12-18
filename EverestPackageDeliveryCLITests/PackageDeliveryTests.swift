@@ -37,7 +37,7 @@ final class PackageDeliveryTests: XCTestCase {
     XCTAssertFalse(sut.isMetadataSet)
   }
   
-  func testMetadataIsInvalid_baseweightWrongDataType() {
+  func testMetadataIsInvalid_baseDeliveryCostWrongDataType() {
   
     sut.handleMetadata(line: "abc 3")
   

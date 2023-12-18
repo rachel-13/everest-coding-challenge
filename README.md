@@ -27,9 +27,9 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 
 3. There will also be a model `PackageInfo` that stores the package information from the user input and another model `PackageCost` that stores package costs.
 
-4. There will be a class `CostCalculator` that calculates the delivery cost given the base weight, weight and distance. If discount is available, apply it.
+4. There will be a class `CostManager` that calculates the delivery cost given the base weight, weight and distance. If discount is available, apply it.
 
-5.  There will be a class `DiscountManager` that checks if discount is applicable, and if yes, return the discount amount. Otherwise return 0. This is a dependency of `CostCalculator`.
+5.  There will be a class `DiscountManager` that checks if discount is applicable, and if yes, return the discount amount. Otherwise return 0. 
 
 6.  All data to live in memory i.e. no caching into text file.
 

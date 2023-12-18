@@ -11,7 +11,7 @@ class PackageDelivery {
   
   var isMetadataSet = false
   var numberOfPackages: Int?
-  var baseWeight: Int?
+  var baseDeliveryCost: Double?
   let errorHandler: ErrorHandlerProtocol
   let discountManager: DiscountManagerProtocol
   
@@ -61,11 +61,11 @@ class PackageDelivery {
       throw SystemError.incorrectArgument
     }
     
-    guard let baseWeight = Int(userInputArr[0]), let numberOfPackages = Int(userInputArr[1]) else {
+    guard let baseDeliveryCost = Double(userInputArr[0]), let numberOfPackages = Int(userInputArr[1]) else {
       throw SystemError.incorrectDataType
     }
     
-    self.baseWeight = baseWeight
+    self.baseDeliveryCost = baseDeliveryCost
     self.numberOfPackages = numberOfPackages
     
     isMetadataSet = true

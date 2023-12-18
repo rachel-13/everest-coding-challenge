@@ -9,9 +9,9 @@ import Foundation
 
 public struct Offer {
   let offerID: String
-  let lowerBoundWeightInKg: Int
-  let upperBoundWeightInKg: Int
-  let lowerBoundDistanceInKm: Int
-  let upperBoundDistanceInKm: Int
+  let lowerBoundWeightInKg: Double
+  let upperBoundWeightInKg: Double
+  let lowerBoundDistanceInKm: Double
+  let upperBoundDistanceInKm: Double
   let discountRateInPercent: Double
 }
