@@ -12,7 +12,18 @@
 		5E2A3CF72B2C587D0091D200 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF62B2C587D0091D200 /* Offer.swift */; };
 		5E2A3CF92B2C58AF0091D200 /* PackageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */; };
 		5E2A3CFB2B2C5B4D0091D200 /* PackageCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */; };
+		5ECFDFB72B2FE98B0009A6B9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* main.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5E2A3CFC2B2FE7AF0091D200 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5E2A3CD82B2B68390091D200 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5E2A3CDF2B2B68390091D200;
+			remoteInfo = EverestPackageDeliveryCLI;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		5E2A3CDE2B2B68390091D200 /* CopyFiles */ = {
@@ -130,6 +141,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				5E2A3CFD2B2FE7AF0091D200 /* PBXTargetDependency */,
 			);
 			name = EverestPackageDeliveryCLITests;
 			productName = EverestPackageDeliveryCLITests;
@@ -199,11 +211,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECFDFB72B2FE98B0009A6B9 /* main.swift in Sources */,
 				5E2A3CF12B2B68520091D200 /* EverestPackageDeliveryCLITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5E2A3CFD2B2FE7AF0091D200 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5E2A3CDF2B2B68390091D200 /* EverestPackageDeliveryCLI */;
+			targetProxy = 5E2A3CFC2B2FE7AF0091D200 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		5E2A3CE52B2B68390091D200 /* Debug */ = {
