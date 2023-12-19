@@ -40,7 +40,6 @@ class PackageDelivery {
         handleMetadata(line: line)
       } else if let noOfPackages = numberOfPackages, noOfPackages > 0 {
         handlePackageInfo(line: line)
-        numberOfPackages? -= 1
         
         if numberOfPackages == 0 {
           print("Your package costs are:")
@@ -66,7 +65,7 @@ class PackageDelivery {
     let userInputArr = line.components(separatedBy: " ")
     
     guard userInputArr.count == 2 else  {
-      throw SystemError.incorrectArgument
+      throw SystemError.incorrectArgumentMetadata
     }
     
     guard let baseDeliveryCost = Double(userInputArr[0]), let numberOfPackages = Int(userInputArr[1]) else {
@@ -98,7 +97,7 @@ class PackageDelivery {
     let userInputArr = line.components(separatedBy: " ")
     
     guard userInputArr.count == 3 || userInputArr.count == 4 else  {
-      throw SystemError.incorrectArgument
+      throw SystemError.incorrectArgumentPackageInfo
     }
     
     guard let packageWeight = Double(userInputArr[1]), let destinationDistance = Double(userInputArr[2]) else {
@@ -117,6 +116,7 @@ class PackageDelivery {
                                   distanceInKm: destinationDistance,
                                   offerCode: offerId)
     self.packageInfoArray.append(packageInfo)
+    numberOfPackages? -= 1
   }
   
   private func printOutput() {

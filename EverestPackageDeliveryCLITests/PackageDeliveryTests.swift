@@ -32,7 +32,7 @@ final class PackageDeliveryTests: XCTestCase {
     
     sut.handleMetadata(line: "100 3 4")
     
-    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.incorrectArgument)
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.incorrectArgumentMetadata)
     XCTAssertTrue(mockErrorHandler.didCallDisplayError)
     XCTAssertFalse(sut.isMetadataSet)
   }
