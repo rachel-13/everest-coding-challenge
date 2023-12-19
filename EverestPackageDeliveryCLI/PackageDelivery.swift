@@ -1,5 +1,5 @@
 //
-//  main.swift
+//  PackageDelivery.swift
 //  EverestPackageDeliveryCLI
 //
 //  Created by pohz on 15/12/2023.
@@ -7,6 +7,7 @@
 
 import Foundation
 
+@main
 class PackageDelivery {
   
   var isMetadataSet = false
@@ -15,6 +16,42 @@ class PackageDelivery {
   var packageInfoArray: [PackageInfo] = [PackageInfo]()
   let errorHandler: ErrorHandlerProtocol
   let costManager: CostManagerProtocol
+  
+  static func main() {
+    
+    // MARK: Program Setup and Entry Point
+    let errorHandler = ErrorHandler()
+    
+    let offer1 = Offer(offerID: "OFR001",
+                       lowerBoundWeightInKg: 70,
+                       upperBoundWeightInKg: 200,
+                       lowerBoundDistanceInKm: 0,
+                       upperBoundDistanceInKm: 200,
+                       discountRateInPercent: 10)
+    
+    let offer2 = Offer(offerID: "OFR002",
+                       lowerBoundWeightInKg: 100,
+                       upperBoundWeightInKg: 250,
+                       lowerBoundDistanceInKm: 50,
+                       upperBoundDistanceInKm: 150,
+                       discountRateInPercent: 7)
+    
+    let offer3 = Offer(offerID: "OFR003",
+                       lowerBoundWeightInKg: 10,
+                       upperBoundWeightInKg: 150,
+                       lowerBoundDistanceInKm: 50,
+                       upperBoundDistanceInKm: 250,
+                       discountRateInPercent: 5)
+    let discountManager = DiscountManager(errorHandler: errorHandler)
+    discountManager.insertOffer(offer: offer1)
+    discountManager.insertOffer(offer: offer2)
+    discountManager.insertOffer(offer: offer3)
+    
+    let costManager = CostManager(discountManager: discountManager)
+    
+    let packageDelivery = PackageDelivery(errorHandler: errorHandler, costManager: costManager)
+    packageDelivery.run()
+  }
   
   init(errorHandler: ErrorHandlerProtocol, costManager: CostManagerProtocol) {
     self.errorHandler = errorHandler
@@ -42,7 +79,7 @@ class PackageDelivery {
         handlePackageInfo(line: line)
         
         if numberOfPackages == 0 {
-          print("Your package costs are:")
+          print("Your package discount and costs are:")
           printOutput()
           break
         }
@@ -144,35 +181,3 @@ class PackageDelivery {
   }
 }
 
-// MARK: Program Setup and Entry Point
-let errorHandler = ErrorHandler()
-
-let offer1 = Offer(offerID: "OFR001",
-                   lowerBoundWeightInKg: 70,
-                   upperBoundWeightInKg: 200,
-                   lowerBoundDistanceInKm: 0,
-                   upperBoundDistanceInKm: 200,
-                   discountRateInPercent: 10)
-
-let offer2 = Offer(offerID: "OFR002",
-                   lowerBoundWeightInKg: 100,
-                   upperBoundWeightInKg: 250,
-                   lowerBoundDistanceInKm: 50,
-                   upperBoundDistanceInKm: 150,
-                   discountRateInPercent: 7)
-
-let offer3 = Offer(offerID: "OFR003",
-                   lowerBoundWeightInKg: 10,
-                   upperBoundWeightInKg: 150,
-                   lowerBoundDistanceInKm: 50,
-                   upperBoundDistanceInKm: 250,
-                   discountRateInPercent: 5)
-let discountManager = DiscountManager(errorHandler: errorHandler)
-discountManager.insertOffer(offer: offer1)
-discountManager.insertOffer(offer: offer2)
-discountManager.insertOffer(offer: offer3)
-
-let costManager = CostManager(discountManager: discountManager)
-
-let packageDelivery = PackageDelivery(errorHandler: errorHandler, costManager: costManager)
-packageDelivery.run()

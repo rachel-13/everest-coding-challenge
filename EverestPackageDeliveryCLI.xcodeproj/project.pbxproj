@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E2A3CE42B2B68390091D200 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* main.swift */; };
+		5E2A3CE42B2B68390091D200 /* PackageDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* PackageDelivery.swift */; };
 		5E2A3CF12B2B68520091D200 /* PackageDeliveryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF02B2B68520091D200 /* PackageDeliveryTests.swift */; };
 		5E2A3CF72B2C587D0091D200 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF62B2C587D0091D200 /* Offer.swift */; };
 		5E2A3CF92B2C58AF0091D200 /* PackageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */; };
 		5E2A3CFB2B2C5B4D0091D200 /* PackageCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */; };
-		5ECFDFB72B2FE98B0009A6B9 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* main.swift */; };
+		5ECFDFB72B2FE98B0009A6B9 /* PackageDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* PackageDelivery.swift */; };
 		5ECFDFC02B3025940009A6B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */; };
 		5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */; };
 		5ECFDFC32B3026B90009A6B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */; };
@@ -53,7 +53,7 @@
 
 /* Begin PBXFileReference section */
 		5E2A3CE02B2B68390091D200 /* EverestPackageDeliveryCLI */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EverestPackageDeliveryCLI; sourceTree = BUILT_PRODUCTS_DIR; };
-		5E2A3CE32B2B68390091D200 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5E2A3CE32B2B68390091D200 /* PackageDelivery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageDelivery.swift; sourceTree = "<group>"; };
 		5E2A3CEE2B2B68520091D200 /* EverestPackageDeliveryCLITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EverestPackageDeliveryCLITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E2A3CF02B2B68520091D200 /* PackageDeliveryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageDeliveryTests.swift; sourceTree = "<group>"; };
 		5E2A3CF62B2C587D0091D200 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 			isa = PBXGroup;
 			children = (
 				5E2A3CF52B2C584E0091D200 /* Models */,
-				5E2A3CE32B2B68390091D200 /* main.swift */,
+				5E2A3CE32B2B68390091D200 /* PackageDelivery.swift */,
 				5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */,
 				5ECFDFCA2B3038960009A6B9 /* DiscountManager.swift */,
 				5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */,
@@ -244,7 +244,7 @@
 				5ECFDFC02B3025940009A6B9 /* ErrorHandler.swift in Sources */,
 				5E2A3CF72B2C587D0091D200 /* Offer.swift in Sources */,
 				5ECFDFCB2B3038960009A6B9 /* DiscountManager.swift in Sources */,
-				5E2A3CE42B2B68390091D200 /* main.swift in Sources */,
+				5E2A3CE42B2B68390091D200 /* PackageDelivery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +260,7 @@
 				5ECFDFC32B3026B90009A6B9 /* ErrorHandler.swift in Sources */,
 				5ECFDFC92B3038880009A6B9 /* MockDiscountManager.swift in Sources */,
 				5ECFDFD32B304EAD0009A6B9 /* CostManager.swift in Sources */,
-				5ECFDFB72B2FE98B0009A6B9 /* main.swift in Sources */,
+				5ECFDFB72B2FE98B0009A6B9 /* PackageDelivery.swift in Sources */,
 				5E2A3CF12B2B68520091D200 /* PackageDeliveryTests.swift in Sources */,
 				5ECFDFC62B3026BF0009A6B9 /* PackageCost.swift in Sources */,
 				5ECFDFC52B3026BE0009A6B9 /* PackageInfo.swift in Sources */,
