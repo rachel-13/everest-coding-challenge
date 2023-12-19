@@ -11,6 +11,7 @@ public protocol DiscountManagerProtocol {
   func insertOffer(offer: Offer)
   func getOffer(withId offerId: String) -> Offer?
   func getDiscountAmount(originalDeliveryCost: Double, offerId: String) -> Double
+  func checkEligibility(for offerId: String, packageWeight: Double, destinationDistance: Double) -> Bool
 }
 
 class DiscountManager: DiscountManagerProtocol {
@@ -48,5 +49,19 @@ class DiscountManager: DiscountManagerProtocol {
     return discountRate * originalDeliveryCost
   }
   
+  func checkEligibility(for offerId: String, packageWeight: Double, destinationDistance: Double) -> Bool {
+    guard let validOffer = getOffer(withId: offerId) else {
+      return false
+    }
+    
+    if packageWeight > validOffer.lowerBoundWeightInKg &&
+        packageWeight < validOffer.upperBoundWeightInKg &&
+        destinationDistance > validOffer.lowerBoundDistanceInKm &&
+        destinationDistance < validOffer.upperBoundDistanceInKm {
+      return true
+    }
+    
+    return false
+  }
   
 }

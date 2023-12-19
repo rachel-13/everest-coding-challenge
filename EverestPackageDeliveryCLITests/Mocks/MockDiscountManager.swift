@@ -16,8 +16,9 @@ class MockDiscountManager: DiscountManagerProtocol {
     offerCount += 1
   }
   
+  var stubbedOffer: Offer?
   func getOffer(withId offerId: String) -> Offer? {
-    return nil
+    return stubbedOffer
   }
   
   var didCallGetDiscountAmount = false
@@ -27,5 +28,9 @@ class MockDiscountManager: DiscountManagerProtocol {
     return stubbedDiscountAmount
   }
   
+  var stubbedEligibility = false
+  func checkEligibility(for offerId: String, packageWeight: Double, destinationDistance: Double) -> Bool {
+    return stubbedEligibility
+  }
   
 }
