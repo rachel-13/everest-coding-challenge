@@ -42,3 +42,7 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 10. Lump all errors into one enum category to miniimze complexity. Would love to be able to break it down into `InputError`, `DiscountError`, `PackageWeightError` for maintenance/logging purposes.
 
 
+Cleanup work to do:
+1. Rename all `packageWeight` to `packageWeightInKg` and `destinationDistance` to `destinationDistanceInKm`
+2. Find ways to allow of insertion of `Offer` in array format instead of copy and paste `insertOffer(offer:`
+3. Clean up prints and commented codes

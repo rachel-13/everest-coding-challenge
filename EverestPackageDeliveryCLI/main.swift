@@ -12,6 +12,7 @@ class PackageDelivery {
   var isMetadataSet = false
   var numberOfPackages: Int?
   var baseDeliveryCost: Double?
+  var packageInfoArray: [PackageInfo] = [PackageInfo]()
   let errorHandler: ErrorHandlerProtocol
   let discountManager: DiscountManagerProtocol
   
@@ -37,8 +38,12 @@ class PackageDelivery {
       
       if !isMetadataSet {
         handleMetadata(line: line)
+      } else if let noOfPackages = numberOfPackages, noOfPackages > 0 {
+        numberOfPackages? -= 1
+        handlePackageInfo(line: line)
       } else {
-        // TODO: setup package info
+        // TODO: churn output
+        break
       }
     }
   }
@@ -65,10 +70,50 @@ class PackageDelivery {
       throw SystemError.incorrectDataType
     }
     
+    guard baseDeliveryCost >= 0, numberOfPackages >= 0 else {
+      throw SystemError.negativeNumerics
+    }
+    
     self.baseDeliveryCost = baseDeliveryCost
-    self.numberOfPackages = numberOfPackages
+    self.numberOfPackages = numberOfPackages - 1
     
     isMetadataSet = true
+  }
+  
+  func handlePackageInfo(line: String) {
+    do {
+      try setupPackageInfo(line: line)
+    } catch (let error) {
+      guard let err = error as? SystemError else {
+        return
+      }
+      errorHandler.displayError(error: err)
+    }
+  }
+  
+  private func setupPackageInfo(line: String) throws {
+    let userInputArr = line.components(separatedBy: " ")
+    
+    guard userInputArr.count == 3 || userInputArr.count == 4 else  {
+      throw SystemError.incorrectArgument
+    }
+    
+    guard let packageWeight = Double(userInputArr[1]), let destinationDistance = Double(userInputArr[2]) else {
+      throw SystemError.incorrectDataType
+    }
+    
+    guard packageWeight >= 0, destinationDistance >= 0 else {
+      throw SystemError.negativeNumerics
+    }
+     
+    let packageId = userInputArr[0]
+    let offerId: String? = userInputArr.count == 4 ? userInputArr[3] : nil
+    
+    let packageInfo = PackageInfo(packageID: packageId,
+                                  packageWeightInKg: packageWeight,
+                                  distanceInKm: destinationDistance,
+                                  offerCode: offerId)
+    self.packageInfoArray.append(packageInfo)
   }
 }
 

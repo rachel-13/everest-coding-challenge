@@ -9,7 +9,7 @@ import Foundation
 
 struct PackageInfo {
   let packageID: String
-  let packageWeightInKg: Int
-  let distanceInKm: Int
+  let packageWeightInKg: Double
+  let distanceInKm: Double
   let offerCode: String?
 }
