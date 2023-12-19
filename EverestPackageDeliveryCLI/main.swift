@@ -14,11 +14,11 @@ class PackageDelivery {
   var baseDeliveryCost: Double?
   var packageInfoArray: [PackageInfo] = [PackageInfo]()
   let errorHandler: ErrorHandlerProtocol
-  let discountManager: DiscountManagerProtocol
+  let costManager: CostManagerProtocol
   
-  init(errorHandler: ErrorHandlerProtocol, discountManager: DiscountManagerProtocol) {
+  init(errorHandler: ErrorHandlerProtocol, costManager: CostManagerProtocol) {
     self.errorHandler = errorHandler
-    self.discountManager = discountManager
+    self.costManager = costManager
   }
   
   func run() {
@@ -28,7 +28,7 @@ class PackageDelivery {
   }
   
   private func promptForInput() {
-    print("Type 'quit' to exit.\nPlease enter base weight in KG and number of packages.")
+    print("Type 'quit' to exit.\nPlease enter base weight in KG and number of packages, followed by package information.")
     
     while let line = readLine() {
       if line == "quit" {
@@ -39,11 +39,14 @@ class PackageDelivery {
       if !isMetadataSet {
         handleMetadata(line: line)
       } else if let noOfPackages = numberOfPackages, noOfPackages > 0 {
-        numberOfPackages? -= 1
         handlePackageInfo(line: line)
-      } else {
-        // TODO: churn output
-        break
+        numberOfPackages? -= 1
+        
+        if numberOfPackages == 0 {
+          print("Your package costs are:")
+          printOutput()
+          break
+        }
       }
     }
   }
@@ -75,7 +78,7 @@ class PackageDelivery {
     }
     
     self.baseDeliveryCost = baseDeliveryCost
-    self.numberOfPackages = numberOfPackages - 1
+    self.numberOfPackages = numberOfPackages
     
     isMetadataSet = true
   }
@@ -115,6 +118,30 @@ class PackageDelivery {
                                   offerCode: offerId)
     self.packageInfoArray.append(packageInfo)
   }
+  
+  private func printOutput() {
+    for packageInfo in self.packageInfoArray {
+      let packageCost = calculatePackageOutput(packageInfo: packageInfo)
+      print(String(format: "%@ %.2f %.2f", packageCost.packageID, packageCost.discountAmount, packageCost.totalCost - packageCost.discountAmount))
+    }
+  }
+  
+  func calculatePackageOutput(packageInfo: PackageInfo) -> PackageCost {
+    
+    let originalDeliveryCost = costManager.getOriginalDeliveryCost(baseDeliveryCost: self.baseDeliveryCost ?? 0,
+                                                                   packageWeight: packageInfo.packageWeightInKg,
+                                                                   destinationDistance: packageInfo.distanceInKm)
+    
+    if let offerCode = packageInfo.offerCode {
+      let discountAmount = costManager.getDiscountAmount(with: offerCode,
+                                                         originalDeliveryCost: originalDeliveryCost,
+                                                         packageWeight: packageInfo.packageWeightInKg,
+                                                         destinationDistance: packageInfo.distanceInKm)
+      return PackageCost(packageID: packageInfo.packageID, discountAmount: discountAmount, totalCost: originalDeliveryCost)
+    }
+    
+    return PackageCost(packageID: packageInfo.packageID, discountAmount: 0, totalCost: originalDeliveryCost)
+  }
 }
 
 // MARK: Program Setup and Entry Point
@@ -125,7 +152,7 @@ let offer1 = Offer(offerID: "OFR001",
                    upperBoundWeightInKg: 200,
                    lowerBoundDistanceInKm: 0,
                    upperBoundDistanceInKm: 200,
-                   discountRateInPercent: 5)
+                   discountRateInPercent: 10)
 
 let offer2 = Offer(offerID: "OFR002",
                    lowerBoundWeightInKg: 100,
@@ -139,11 +166,13 @@ let offer3 = Offer(offerID: "OFR003",
                    upperBoundWeightInKg: 150,
                    lowerBoundDistanceInKm: 50,
                    upperBoundDistanceInKm: 250,
-                   discountRateInPercent: 7)
+                   discountRateInPercent: 5)
 let discountManager = DiscountManager(errorHandler: errorHandler)
 discountManager.insertOffer(offer: offer1)
 discountManager.insertOffer(offer: offer2)
 discountManager.insertOffer(offer: offer3)
 
-let packageDelivery = PackageDelivery(errorHandler: errorHandler, discountManager: discountManager)
+let costManager = CostManager(discountManager: discountManager)
+
+let packageDelivery = PackageDelivery(errorHandler: errorHandler, costManager: costManager)
 packageDelivery.run()

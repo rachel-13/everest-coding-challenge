@@ -26,6 +26,7 @@
 		5ECFDFD02B304E490009A6B9 /* CostManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFCF2B304E490009A6B9 /* CostManagerTests.swift */; };
 		5ECFDFD22B304EAD0009A6B9 /* CostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */; };
 		5ECFDFD32B304EAD0009A6B9 /* CostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */; };
+		5ECFDFD52B3188160009A6B9 /* MockCostManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFD42B3188160009A6B9 /* MockCostManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		5ECFDFCD2B303C610009A6B9 /* DiscountManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscountManagerTests.swift; sourceTree = "<group>"; };
 		5ECFDFCF2B304E490009A6B9 /* CostManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostManagerTests.swift; sourceTree = "<group>"; };
 		5ECFDFD12B304EAD0009A6B9 /* CostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostManager.swift; sourceTree = "<group>"; };
+		5ECFDFD42B3188160009A6B9 /* MockCostManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockCostManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +143,7 @@
 			children = (
 				5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */,
 				5ECFDFC82B3038880009A6B9 /* MockDiscountManager.swift */,
+				5ECFDFD42B3188160009A6B9 /* MockCostManager.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5ECFDFD52B3188160009A6B9 /* MockCostManager.swift in Sources */,
 				5ECFDFCE2B303C610009A6B9 /* DiscountManagerTests.swift in Sources */,
 				5ECFDFD02B304E490009A6B9 /* CostManagerTests.swift in Sources */,
 				5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */,

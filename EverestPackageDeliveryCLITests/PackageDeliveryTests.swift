@@ -12,12 +12,12 @@ final class PackageDeliveryTests: XCTestCase {
   
   var sut: PackageDelivery!
   var mockErrorHandler: MockErrorHandler!
-  var mockDiscountManager: MockDiscountManager!
+  var mockCostManager: MockCostManager!
   
   override func setUp() {
     mockErrorHandler = MockErrorHandler()
-    mockDiscountManager = MockDiscountManager()
-    sut = PackageDelivery(errorHandler: mockErrorHandler, discountManager: mockDiscountManager)
+    mockCostManager = MockCostManager()
+    sut = PackageDelivery(errorHandler: mockErrorHandler, costManager: mockCostManager)
   }
   
   func testMetadataIsValid() {
@@ -104,5 +104,17 @@ final class PackageDeliveryTests: XCTestCase {
     XCTAssertTrue(mockErrorHandler.didCallDisplayError)
     XCTAssertEqual(sut.packageInfoArray.count, 0)
   }
-  
+ 
+  func testCalculatePackageOutput() {
+    
+    mockCostManager.stubbedOriginalCost = 700
+    mockCostManager.stubbedDiscountAmount = 35
+    
+    let packageInfo = PackageInfo(packageID: "pkg1", packageWeightInKg: 10, distanceInKm: 100, offerCode: "testOffer1")
+    let packageCost = sut.calculatePackageOutput(packageInfo: packageInfo)
+    XCTAssertEqual(packageCost.packageID, packageInfo.packageID)
+    XCTAssertEqual(packageCost.discountAmount, 35)
+    XCTAssertEqual(packageCost.totalCost, 700)
+  }
+
 }

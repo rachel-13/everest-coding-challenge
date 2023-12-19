@@ -9,6 +9,6 @@ import Foundation
 
 struct PackageCost {
   let packageID: String
-  let discountAmount: Int
-  let totalCost: Int
+  let discountAmount: Double
+  let totalCost: Double
 }
