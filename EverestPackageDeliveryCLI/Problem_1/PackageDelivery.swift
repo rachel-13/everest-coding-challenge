@@ -7,7 +7,7 @@
 
 import Foundation
 
-@main
+//@main
 class PackageDelivery {
   
   var isMetadataSet = false
