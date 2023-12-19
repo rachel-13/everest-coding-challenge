@@ -42,6 +42,14 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 10. Lump all errors into one enum category to miniimze complexity. Would love to be able to break it down into `InputError`, `DiscountError`, `PackageWeightError` for maintenance/logging purposes.
 
 
+## Problem 2
+
+### Ideas:
+
+1. Smaller problems first. Solve packages to pick first using dynamic programming to find max weight item to carry, with backtracking to get the selected items to include
+2. If items are of same weight, then use distance to determine which package to include
+3. Then develop logic to keep track of which vehicles to carry which package and ETA to return to station. 
+
 Cleanup work to do:
 1. Rename all `packageWeight` to `packageWeightInKg` and `destinationDistance` to `destinationDistanceInKm`
 2. Find ways to allow of insertion of `Offer` in array format instead of copy and paste `insertOffer(offer:`
