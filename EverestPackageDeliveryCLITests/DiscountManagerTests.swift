@@ -132,4 +132,43 @@ final class DiscountManagerTests: XCTestCase {
     XCTAssertEqual(discountAmount, 0)
   }
   
+  func testElilibility_eligible() {
+    let offer1 = Offer(offerID: "testOffer1",
+                       lowerBoundWeightInKg: 10,
+                       upperBoundWeightInKg: 150,
+                       lowerBoundDistanceInKm: 50,
+                       upperBoundDistanceInKm: 250,
+                       discountRateInPercent: 7)
+    sut.insertOffer(offer: offer1)
+    
+    let eligible = sut.checkEligibility(for: "testOffer1", packageWeight: 10, destinationDistance: 100)
+    XCTAssertTrue(eligible)
+  }
+  
+  func testElilibility_ineligibleWeight() {
+    let offer1 = Offer(offerID: "testOffer1",
+                       lowerBoundWeightInKg: 10,
+                       upperBoundWeightInKg: 150,
+                       lowerBoundDistanceInKm: 50,
+                       upperBoundDistanceInKm: 250,
+                       discountRateInPercent: 7)
+    sut.insertOffer(offer: offer1)
+    
+    let eligible = sut.checkEligibility(for: "testOffer1", packageWeight: 9, destinationDistance: 100)
+    XCTAssertFalse(eligible)
+  }
+  
+  func testElilibility_ineligibleDistance() {
+    let offer1 = Offer(offerID: "testOffer1",
+                       lowerBoundWeightInKg: 10,
+                       upperBoundWeightInKg: 150,
+                       lowerBoundDistanceInKm: 50,
+                       upperBoundDistanceInKm: 250,
+                       discountRateInPercent: 7)
+    sut.insertOffer(offer: offer1)
+    
+    let eligible = sut.checkEligibility(for: "testOffer1", packageWeight: 10, destinationDistance: 45)
+    XCTAssertFalse(eligible)
+  }
+  
 }

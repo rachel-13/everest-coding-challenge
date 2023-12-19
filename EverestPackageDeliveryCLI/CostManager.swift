@@ -9,7 +9,7 @@ import Foundation
 
 public protocol CostManagerProtocol {
   func getOriginalDeliveryCost(baseDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double
-  func getDiscountedTotalDeliveryCost(with offerId: String, originalDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double
+  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double
 }
 
 class CostManager: CostManagerProtocol {
@@ -26,14 +26,13 @@ class CostManager: CostManagerProtocol {
     return baseDeliveryCost + (packageWeight * packageMultiplier) + (destinationDistance * distanceMultiplier)
   }
   
-  func getDiscountedTotalDeliveryCost(with offerId: String, originalDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double {
-    
+  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double {
     if let validOffer = discountManager.getOffer(withId: offerId),
        discountManager.checkEligibility(for: validOffer.offerID, packageWeight: packageWeight, destinationDistance: destinationDistance) {
       let discountAmount = discountManager.getDiscountAmount(originalDeliveryCost: originalDeliveryCost, offerId: offerId)
-      return originalDeliveryCost - discountAmount
+      return discountAmount
     }
     
-    return originalDeliveryCost
+    return 0
   }
 }

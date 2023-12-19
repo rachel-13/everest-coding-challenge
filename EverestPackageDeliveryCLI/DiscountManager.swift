@@ -54,9 +54,9 @@ class DiscountManager: DiscountManagerProtocol {
       return false
     }
     
-    if packageWeight > validOffer.lowerBoundWeightInKg &&
+    if packageWeight >= validOffer.lowerBoundWeightInKg &&
         packageWeight < validOffer.upperBoundWeightInKg &&
-        destinationDistance > validOffer.lowerBoundDistanceInKm &&
+        destinationDistance >= validOffer.lowerBoundDistanceInKm &&
         destinationDistance < validOffer.upperBoundDistanceInKm {
       return true
     }

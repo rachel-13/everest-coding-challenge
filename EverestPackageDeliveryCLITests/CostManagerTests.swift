@@ -22,7 +22,7 @@ final class CostManagerTests: XCTestCase {
     XCTAssertEqual(totalCost, 175)
   }
   
-  func testGetDiscountedTotalDeliveryCost() {
+  func testGetDiscountAmount_validAndEligibleOffer() {
     
     mockDiscountManager.stubbedDiscountAmount = 35
     mockDiscountManager.stubbedEligibility = true
@@ -34,7 +34,8 @@ final class CostManagerTests: XCTestCase {
                                              discountRateInPercent: 5)
     
     let originalDeliveryCost = sut.getOriginalDeliveryCost(baseDeliveryCost: 100, packageWeight: 10, destinationDistance: 100)
-    let discountedCost = sut.getDiscountedTotalDeliveryCost(with: "testOffer1", originalDeliveryCost: originalDeliveryCost, packageWeight: 5, destinationDistance: 5)
+    let discountAmount = sut.getDiscountAmount(with: "testOffer1", originalDeliveryCost: originalDeliveryCost, packageWeight: 5, destinationDistance: 5)
+    let discountedCost = originalDeliveryCost - discountAmount
     XCTAssertEqual(discountedCost, 665)
   }
   
