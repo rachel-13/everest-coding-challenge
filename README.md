@@ -46,9 +46,10 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 
 ### Ideas:
 
-1. Smaller problems first. Solve packages to pick first using dynamic programming to find max weight item to carry, with backtracking to get the selected items to include
-2. If items are of same weight, then use distance to determine which package to include
-3. Then develop logic to keep track of which vehicles to carry which package and ETA to return to station. 
+1. Smaller problems first. Solve packages to pick first using Dynamic Programming and bundle them up into a data structure that summarizes info such as `numberOfPackagesInBundle`, `packageBundleWeightInKg` and `packageBundleDeliveryTimeInHours`.
+2. Step 1 is to generate a dynamic programming table that maximizes weight. Then find ways to change the logic to track max number of packages included so far and which packages, then future calculations use this as decision as well.
+3. If bundle of items are of same weight, then use shorter delivery time to determine which package to include
+4. Then develop logic to keep track of which vehicles to carry which package and ETA to return to station. 
 
 Cleanup work to do:
 1. Rename all `packageWeight` to `packageWeightInKg` and `destinationDistance` to `destinationDistanceInKm`
