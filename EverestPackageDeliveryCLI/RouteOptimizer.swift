@@ -53,9 +53,9 @@ class RouteOptimizer {
             weightTable[item][weightCap] = includeCurrentItemWeight
             
             if countTable[item - 1][weightCap - weightArr[item - 1]] != 0 {
-              selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap - weightArr[item - 1]] + [weightArr[item - 1]]
+              selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap - weightArr[item - 1]] + [item - 1]
             } else {
-              selectedItemsTable[item][weightCap].append(weightArr[item - 1])
+              selectedItemsTable[item][weightCap].append(item - 1)
             }
             
           } else if notIncludeCurrentItem == includeCurrentItem && includeCurrentItemWeight > notIncludeCurrentItemWeight {
@@ -63,9 +63,9 @@ class RouteOptimizer {
             weightTable[item][weightCap] = includeCurrentItemWeight
             
             if countTable[item - 1][weightCap - weightArr[item - 1]] != 0 {
-              selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap - weightArr[item - 1]] + [weightArr[item - 1]]
+              selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap - weightArr[item - 1]] + [item - 1]
             } else {
-              selectedItemsTable[item][weightCap].append(weightArr[item - 1])
+              selectedItemsTable[item][weightCap].append(item - 1)
             }
           } else {
             countTable[item][weightCap] = notIncludeCurrentItem
