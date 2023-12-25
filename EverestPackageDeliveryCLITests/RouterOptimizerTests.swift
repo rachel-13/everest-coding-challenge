@@ -9,10 +9,10 @@ import XCTest
 
 final class RouterOptimizerTests: XCTestCase {
   
-  var sut: RouteOptimizer!
+  var sut: ShipmentManager!
   
   override func setUp() {
-    sut = RouteOptimizer()
+    sut = ShipmentManager()
   }
   
   func testGetSubsetLessThanMaxWeight() {
@@ -69,7 +69,19 @@ final class RouterOptimizerTests: XCTestCase {
     
     XCTAssertEqual(shipment.packages.count, 4)
     XCTAssertEqual(shipment.totalWeight, 200)
-    XCTAssertEqual(shipment.shortestDistancePackage, 8)
+    XCTAssertEqual(shipment.shortestDistancePackageInKm, 4)
+  }
+  
+  func testCalculateShipmentDeliveryTime() {
+    let packageInfo1 = PackageInfo(packageID: "testPkg1", packageWeightInKg: 50, distanceInKm: 30, offerCode: nil)
+    let packageInfo2 = PackageInfo(packageID: "testPkg2", packageWeightInKg: 75, distanceInKm: 125, offerCode: nil)
+    let packageInfo3 = PackageInfo(packageID: "testPkg3", packageWeightInKg: 175, distanceInKm: 100, offerCode: nil)
+    let packageInfo4 = PackageInfo(packageID: "testPkg4", packageWeightInKg: 110, distanceInKm: 60, offerCode: nil)
+    let packageInfo5 = PackageInfo(packageID: "testPkg5", packageWeightInKg: 155, distanceInKm: 95, offerCode: nil)
+    
+    let shipment = Shipment(totalWeight: 185, packages: [packageInfo2, packageInfo4], shortestDistancePackageInKm: 60)
+    let shipmentDeliveryTime = sut.calculateShipmentDeliveryTime(shipment: shipment, vehicleSpeedInKmPerHr: 70.0)
+    XCTAssertEqual(shipmentDeliveryTime, 3.56)
   }
   
 }

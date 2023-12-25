@@ -17,6 +17,8 @@
 		5E63FA4E2B319E2500BF2092 /* RouterOptimizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA4D2B319E2500BF2092 /* RouterOptimizerTests.swift */; };
 		5E63FA562B38780300BF2092 /* Shipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA552B38780300BF2092 /* Shipment.swift */; };
 		5E63FA5A2B3879BD00BF2092 /* Shipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA552B38780300BF2092 /* Shipment.swift */; };
+		5E63FA5C2B39D87100BF2092 /* ShipmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA5B2B39D87100BF2092 /* ShipmentManager.swift */; };
+		5E63FA5D2B39D87100BF2092 /* ShipmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA5B2B39D87100BF2092 /* ShipmentManager.swift */; };
 		5ECFDFB72B2FE98B0009A6B9 /* PackageDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* PackageDelivery.swift */; };
 		5ECFDFC02B3025940009A6B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */; };
 		5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */; };
@@ -67,6 +69,7 @@
 		5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOptimizer.swift; sourceTree = "<group>"; };
 		5E63FA4D2B319E2500BF2092 /* RouterOptimizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterOptimizerTests.swift; sourceTree = "<group>"; };
 		5E63FA552B38780300BF2092 /* Shipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shipment.swift; sourceTree = "<group>"; };
+		5E63FA5B2B39D87100BF2092 /* ShipmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentManager.swift; sourceTree = "<group>"; };
 		5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorHandler.swift; sourceTree = "<group>"; };
 		5ECFDFC82B3038880009A6B9 /* MockDiscountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDiscountManager.swift; sourceTree = "<group>"; };
@@ -119,6 +122,7 @@
 				5E63FA492B3196E600BF2092 /* Problem_1 */,
 				5E2A3CF52B2C584E0091D200 /* Models */,
 				5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */,
+				5E63FA5B2B39D87100BF2092 /* ShipmentManager.swift */,
 			);
 			path = EverestPackageDeliveryCLI;
 			sourceTree = "<group>";
@@ -274,6 +278,7 @@
 				5E2A3CF72B2C587D0091D200 /* Offer.swift in Sources */,
 				5ECFDFCB2B3038960009A6B9 /* DiscountManager.swift in Sources */,
 				5E2A3CE42B2B68390091D200 /* PackageDelivery.swift in Sources */,
+				5E63FA5C2B39D87100BF2092 /* ShipmentManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +292,7 @@
 				5E63FA5A2B3879BD00BF2092 /* Shipment.swift in Sources */,
 				5ECFDFD02B304E490009A6B9 /* CostManagerTests.swift in Sources */,
 				5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */,
+				5E63FA5D2B39D87100BF2092 /* ShipmentManager.swift in Sources */,
 				5ECFDFCC2B303AA30009A6B9 /* DiscountManager.swift in Sources */,
 				5ECFDFC32B3026B90009A6B9 /* ErrorHandler.swift in Sources */,
 				5ECFDFC92B3038880009A6B9 /* MockDiscountManager.swift in Sources */,

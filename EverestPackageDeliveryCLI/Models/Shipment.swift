@@ -10,5 +10,5 @@ import Foundation
 struct Shipment {
   let totalWeight: Double
   let packages: [PackageInfo]
-  let shortestDistancePackage: Double
+  let shortestDistancePackageInKm: Double
 }
