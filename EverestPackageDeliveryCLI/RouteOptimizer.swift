@@ -23,64 +23,83 @@ class RouteOptimizer {
   }
   
   func run() {
-    let weightArr = [50, 75, 175, 110, 155]
-    let maxWeight = 200
     
-    let packageBundle = getOptimalPackageBundle(maxWeight: maxWeight, weightArr: weightArr)
+    
   }
   
-  func getOptimalPackageBundle(maxWeight:Int, weightArr:[Int]) -> [Int] {
-    var countTable = Array(repeating: Array(repeating: -1, count: maxWeight+1), count: weightArr.count+1)
-    var weightTable = Array(repeating: Array(repeating: -1, count: maxWeight+1), count: weightArr.count+1)
-    var selectedItemsTable = Array(repeating: Array(repeating: [Int](), count: maxWeight+1), count: weightArr.count+1)
-    
-    for item in 0...weightArr.count {
-      for weightCap in 0...maxWeight {
-
-        if item == 0 || weightCap == 0 {
-          countTable[item][weightCap] = 0
-          weightTable[item][weightCap] = 0
-        } else if weightArr[item - 1] <= weightCap {
-          
-          let notIncludeCurrentItemWeight = weightTable[item - 1][weightCap]
-          let includeCurrentItemWeight = weightArr[item - 1] + weightTable[item - 1][weightCap - weightArr[item - 1]]
-          
-          let notIncludeCurrentItem = countTable[item - 1][weightCap]
-          let includeCurrentItem = 1 + countTable[item - 1][weightCap - weightArr[item - 1]]
-          
-          if includeCurrentItem > notIncludeCurrentItem {
-            countTable[item][weightCap] = includeCurrentItem
-            weightTable[item][weightCap] = includeCurrentItemWeight
-            
-            if countTable[item - 1][weightCap - weightArr[item - 1]] != 0 {
-              selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap - weightArr[item - 1]] + [item - 1]
-            } else {
-              selectedItemsTable[item][weightCap].append(item - 1)
-            }
-            
-          } else if notIncludeCurrentItem == includeCurrentItem && includeCurrentItemWeight > notIncludeCurrentItemWeight {
-            countTable[item][weightCap] = includeCurrentItem
-            weightTable[item][weightCap] = includeCurrentItemWeight
-            
-            if countTable[item - 1][weightCap - weightArr[item - 1]] != 0 {
-              selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap - weightArr[item - 1]] + [item - 1]
-            } else {
-              selectedItemsTable[item][weightCap].append(item - 1)
-            }
-          } else {
-            countTable[item][weightCap] = notIncludeCurrentItem
-            weightTable[item][weightCap] = notIncludeCurrentItemWeight
-            selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap]
-          }
-          
-        } else {
-          countTable[item][weightCap] = countTable[item - 1][weightCap]
-          weightTable[item][weightCap] = weightTable[item - 1][weightCap]
-          selectedItemsTable[item][weightCap] = selectedItemsTable[item - 1][weightCap]
-        }
-      }
+  func getOptimalShipment(maxWeight: Double, packageArr:[PackageInfo]) -> Shipment {
+    let shipmentLessThanMax = getAllShipmentLessThan(maxWeight: maxWeight, packageArr: packageArr)
+    let maxNumberOfPackages = shipmentLessThanMax.max { lhs, rhs in
+      return lhs.packages.count <= rhs.packages.count
     }
     
-    return selectedItemsTable[weightArr.count][maxWeight]
+    let filteredShipmentByCount = shipmentLessThanMax.filter { shipment in
+      return shipment.packages.count >= maxNumberOfPackages!.packages.count
+    }
+    
+    if filteredShipmentByCount.count == 1 {
+      return filteredShipmentByCount[0]
+    }
+    
+    let filteredShipmentByWeight = filteredShipmentByCount.max { lhs, rhs in
+      return lhs.totalWeight <= rhs.totalWeight
+    }
+    
+    if let heaviestShipment = filteredShipmentByWeight {
+      return heaviestShipment
+    }
+    
+    let filteredShipmentByDeliveryTime = filteredShipmentByCount.sorted { lhs, rhs in
+      return lhs.shortestDistancePackage < rhs.shortestDistancePackage
+    }
+    
+    return filteredShipmentByDeliveryTime[0]
+  }
+  
+  func getAllShipmentLessThan(maxWeight: Double, packageArr:[PackageInfo]) -> [Shipment] {
+    
+    let powerSet = findPowerSet(packageArr: packageArr)
+    let filtered = powerSet.filter { subset in
+      let sum = subset.reduce(0, { partialResult, packageInfo in
+        return partialResult + packageInfo.packageWeightInKg
+      })
+      
+      if sum <= maxWeight {
+        return true
+      }
+          
+      return false
+    }.map { subset in
+      let sum = subset.reduce(0, { partialResult, packageInfo in
+        return partialResult + packageInfo.packageWeightInKg
+      })
+      
+      let furthestPackage = subset.max { lhs, rhs in
+        return lhs.distanceInKm > rhs.distanceInKm
+      }
+      
+      return Shipment(totalWeight: sum, packages: subset, shortestDistancePackage: 2 * (furthestPackage?.distanceInKm ?? -1))
+    }
+    
+    return filtered
+  }
+  
+  private func findPowerSet(packageArr: [PackageInfo]) -> [[PackageInfo]] {
+    var result: [[PackageInfo]] = []
+    
+    for i in 0..<packageArr.count {
+      
+      /// Get a copy of all subsets in result, add current element to it and append as result
+      for j in 0..<result.count {
+        var tempInnerArr =  result[j]
+        tempInnerArr.append(packageArr[i])
+        result.append(tempInnerArr)
+      }
+      
+      /// Add current element as a subset on its own
+      result.append([packageArr[i]])
+    }
+    
+    return result
   }
 }

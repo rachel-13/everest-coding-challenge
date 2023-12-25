@@ -15,6 +15,8 @@
 		5E63FA472B31964A00BF2092 /* RouteOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */; };
 		5E63FA482B31964A00BF2092 /* RouteOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */; };
 		5E63FA4E2B319E2500BF2092 /* RouterOptimizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA4D2B319E2500BF2092 /* RouterOptimizerTests.swift */; };
+		5E63FA562B38780300BF2092 /* Shipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA552B38780300BF2092 /* Shipment.swift */; };
+		5E63FA5A2B3879BD00BF2092 /* Shipment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA552B38780300BF2092 /* Shipment.swift */; };
 		5ECFDFB72B2FE98B0009A6B9 /* PackageDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* PackageDelivery.swift */; };
 		5ECFDFC02B3025940009A6B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */; };
 		5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */; };
@@ -64,6 +66,7 @@
 		5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCost.swift; sourceTree = "<group>"; };
 		5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOptimizer.swift; sourceTree = "<group>"; };
 		5E63FA4D2B319E2500BF2092 /* RouterOptimizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterOptimizerTests.swift; sourceTree = "<group>"; };
+		5E63FA552B38780300BF2092 /* Shipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shipment.swift; sourceTree = "<group>"; };
 		5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorHandler.swift; sourceTree = "<group>"; };
 		5ECFDFC82B3038880009A6B9 /* MockDiscountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDiscountManager.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 				5E2A3CF62B2C587D0091D200 /* Offer.swift */,
 				5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */,
 				5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */,
+				5E63FA552B38780300BF2092 /* Shipment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -263,6 +267,7 @@
 			files = (
 				5ECFDFD22B304EAD0009A6B9 /* CostManager.swift in Sources */,
 				5E63FA472B31964A00BF2092 /* RouteOptimizer.swift in Sources */,
+				5E63FA562B38780300BF2092 /* Shipment.swift in Sources */,
 				5E2A3CF92B2C58AF0091D200 /* PackageInfo.swift in Sources */,
 				5E2A3CFB2B2C5B4D0091D200 /* PackageCost.swift in Sources */,
 				5ECFDFC02B3025940009A6B9 /* ErrorHandler.swift in Sources */,
@@ -279,6 +284,7 @@
 				5ECFDFD52B3188160009A6B9 /* MockCostManager.swift in Sources */,
 				5E63FA482B31964A00BF2092 /* RouteOptimizer.swift in Sources */,
 				5ECFDFCE2B303C610009A6B9 /* DiscountManagerTests.swift in Sources */,
+				5E63FA5A2B3879BD00BF2092 /* Shipment.swift in Sources */,
 				5ECFDFD02B304E490009A6B9 /* CostManagerTests.swift in Sources */,
 				5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */,
 				5ECFDFCC2B303AA30009A6B9 /* DiscountManager.swift in Sources */,
