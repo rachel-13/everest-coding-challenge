@@ -23,6 +23,8 @@
 		5E63FA602B3A909F00BF2092 /* PackageCostWithTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA5E2B3A909F00BF2092 /* PackageCostWithTime.swift */; };
 		5E63FA622B3AB1D300BF2092 /* RouteOptimizerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA612B3AB1D300BF2092 /* RouteOptimizerTests.swift */; };
 		5E63FA642B3AB22E00BF2092 /* MockShipmentManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA632B3AB22E00BF2092 /* MockShipmentManager.swift */; };
+		5E63FA662B3AB38A00BF2092 /* VehicleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA652B3AB38A00BF2092 /* VehicleInfo.swift */; };
+		5E63FA672B3AB38A00BF2092 /* VehicleInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA652B3AB38A00BF2092 /* VehicleInfo.swift */; };
 		5ECFDFB72B2FE98B0009A6B9 /* PackageDelivery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CE32B2B68390091D200 /* PackageDelivery.swift */; };
 		5ECFDFC02B3025940009A6B9 /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */; };
 		5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */; };
@@ -77,6 +79,7 @@
 		5E63FA5E2B3A909F00BF2092 /* PackageCostWithTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCostWithTime.swift; sourceTree = "<group>"; };
 		5E63FA612B3AB1D300BF2092 /* RouteOptimizerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOptimizerTests.swift; sourceTree = "<group>"; };
 		5E63FA632B3AB22E00BF2092 /* MockShipmentManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockShipmentManager.swift; sourceTree = "<group>"; };
+		5E63FA652B3AB38A00BF2092 /* VehicleInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleInfo.swift; sourceTree = "<group>"; };
 		5ECFDFBF2B3025940009A6B9 /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		5ECFDFC12B3026B10009A6B9 /* MockErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockErrorHandler.swift; sourceTree = "<group>"; };
 		5ECFDFC82B3038880009A6B9 /* MockDiscountManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDiscountManager.swift; sourceTree = "<group>"; };
@@ -153,6 +156,7 @@
 				5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */,
 				5E63FA552B38780300BF2092 /* Shipment.swift */,
 				5E63FA5E2B3A909F00BF2092 /* PackageCostWithTime.swift */,
+				5E63FA652B3AB38A00BF2092 /* VehicleInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -279,6 +283,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E63FA662B3AB38A00BF2092 /* VehicleInfo.swift in Sources */,
 				5ECFDFD22B304EAD0009A6B9 /* CostManager.swift in Sources */,
 				5E63FA472B31964A00BF2092 /* RouteOptimizer.swift in Sources */,
 				5E63FA562B38780300BF2092 /* Shipment.swift in Sources */,
@@ -300,6 +305,7 @@
 				5ECFDFD52B3188160009A6B9 /* MockCostManager.swift in Sources */,
 				5E63FA482B31964A00BF2092 /* RouteOptimizer.swift in Sources */,
 				5E63FA622B3AB1D300BF2092 /* RouteOptimizerTests.swift in Sources */,
+				5E63FA672B3AB38A00BF2092 /* VehicleInfo.swift in Sources */,
 				5ECFDFCE2B303C610009A6B9 /* DiscountManagerTests.swift in Sources */,
 				5E63FA5A2B3879BD00BF2092 /* Shipment.swift in Sources */,
 				5E63FA642B3AB22E00BF2092 /* MockShipmentManager.swift in Sources */,

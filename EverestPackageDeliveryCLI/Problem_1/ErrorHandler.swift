@@ -12,6 +12,7 @@ public enum SystemError: Error, Equatable {
   case incorrectArgumentPackageInfo
   case incorrectDataType
   case negativeNumerics
+  case incorrectArgumentVehicleInfo
 }
 
 public protocol ErrorHandlerProtocol {
@@ -29,6 +30,8 @@ class ErrorHandler: ErrorHandlerProtocol {
         print("Please ensure that the values are in the form of numbers")
       case .negativeNumerics:
         print("Please ensure numerics are postive values")
+      case .incorrectArgumentVehicleInfo:
+        print("Please ensure there are 3 values in the input")
     }
   }
 }

@@ -105,4 +105,50 @@ final class RouteOptimizerTests: XCTestCase {
     XCTAssertTrue(mockErrorHandler.didCallDisplayError)
     XCTAssertEqual(sut.packageInfoArray.count, 0)
   }
+  
+  func testSetupVehicleInfo() {
+    sut.handleVehicleInfo(line: "2 70 200")
+    
+    XCTAssertEqual(sut.vehicleInfoArray.count, 2)
+  }
+  
+  func testSetupVehicleInfo_negativeNumberOfVehicles() {
+    sut.handleVehicleInfo(line: "-2 70 200")
+    
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.negativeNumerics)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
+    XCTAssertEqual(sut.packageInfoArray.count, 0)
+  }
+  
+  func testSetupVehicleInfo_negativeMaxSpeed() {
+    sut.handleVehicleInfo(line: "2 -70 200")
+    
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.negativeNumerics)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
+    XCTAssertEqual(sut.packageInfoArray.count, 0)
+  }
+  
+  func testSetupVehicleInfo_negativeMaxWeight() {
+    sut.handleVehicleInfo(line: "2 70 -200")
+    
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.negativeNumerics)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
+    XCTAssertEqual(sut.packageInfoArray.count, 0)
+  }
+  
+  func testSetupVehicleInfo_incorrectNumberOfArguments() {
+    sut.handleVehicleInfo(line: "2 70")
+    
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.incorrectArgumentVehicleInfo)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
+    XCTAssertEqual(sut.packageInfoArray.count, 0)
+  }
+  
+  func testSetupVehicleInfo_incorrectDataType() {
+    sut.handleVehicleInfo(line: "2 70 abc")
+    
+    XCTAssertEqual(mockErrorHandler.stubbedError, SystemError.incorrectDataType)
+    XCTAssertTrue(mockErrorHandler.didCallDisplayError)
+    XCTAssertEqual(sut.packageInfoArray.count, 0)
+  }
 }

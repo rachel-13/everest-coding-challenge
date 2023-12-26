@@ -14,6 +14,7 @@ class RouteOptimizer {
   var numberOfPackages: Int?
   var baseDeliveryCost: Double?
   var packageInfoArray: [PackageInfo] = [PackageInfo]()
+  var vehicleInfoArray: [VehicleInfo] = [VehicleInfo]()
   let errorHandler: ErrorHandlerProtocol
   let costManager: CostManagerProtocol
   let shipmentManager: ShipmentManagerProtocol
@@ -83,7 +84,7 @@ class RouteOptimizer {
         handlePackageInfo(line: line)
       } else {
         handleVehicleInfo(line: line)
-        
+        printOutput()
       }
     }
   }
@@ -158,7 +159,41 @@ class RouteOptimizer {
   }
   
   func handleVehicleInfo(line: String) {
+    do {
+      try setupVehicleInfo(line: line)
+    } catch (let error) {
+      guard let err = error as? SystemError else {
+        return
+      }
+      errorHandler.displayError(error: err)
+    }
+  }
+  
+  private func setupVehicleInfo(line: String) throws {
+    let userInputArr = line.components(separatedBy: " ")
     
+    guard userInputArr.count == 3 else  {
+      throw SystemError.incorrectArgumentVehicleInfo
+    }
+    
+    guard let numberOfVehicles = Int(userInputArr[0]),
+            let maxSpeed = Double(userInputArr[1]),
+            let maxWeight = Double(userInputArr[2]) else {
+      throw SystemError.incorrectDataType
+    }
+    
+    guard numberOfVehicles >= 0, maxSpeed >= 0, maxWeight >= 0 else {
+      throw SystemError.negativeNumerics
+    }
+    
+    for _ in 0..<numberOfVehicles {
+      let vehicle = VehicleInfo(maxSpeedInKmPerHr: maxSpeed, maxWeight: maxWeight, accumulatedDeliveryTime: 0)
+      vehicleInfoArray.append(vehicle)
+    }
+  }
+  
+  private func printOutput() {
+    // TODO: print output
   }
   
 }
