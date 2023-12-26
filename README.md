@@ -18,6 +18,7 @@ After a few trials and errors, I ended up using option #2 as this was the only w
  
 1. All distance and weights are all positive numbers. 
 2. Decimals are fair game, e.g. if a 5% discount ends up with decimals like $5.7123, it would be fair to display rounded numbers into the nearest ten-cent which is $5.70. Idea came from a business perspective where customers would not want to be charged an extra $0.30 and the business should not lose $0.70.
+3. Package IDs should be unique and distinct
 
 ### Ideas:
 
@@ -46,13 +47,17 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 
 ### Ideas:
 
-1. Smaller problems first. Solve packages to pick first using Dynamic Programming and bundle them up into a data structure that summarizes info such as `numberOfPackagesInBundle`, `packageBundleWeightInKg` and `packageBundleDeliveryTimeInHours`.
-2. Step 1 is to generate a dynamic programming table that maximizes weight. Then find ways to change the logic to track max number of packages included so far and which packages, then future calculations use this as decision as well.
-3. If bundle of items are of same weight, then use shorter delivery time to determine which package to include
-4. Then develop logic to keep track of which vehicles to carry which package and ETA to return to station. 
+1. Smaller problems first. Solve getting maximum number of shipments first by finding a power set and choosing one with maximum number of elements not surpassing maxWeight. Then if there is a tie, choose the heaviest one, if still a tie, choose one with shortest distance
+2. Package delivery time is summation of vehicles accumulated delivery time and its own delivery time.
+3. To keep printing output in order, compare `PackageInfo` array from input and a dictionary that contains `PackageTimeWithCost`
+
+## Refactoring or enhancements if time allows
 
 Cleanup work to do:
 1. Rename all `packageWeight` to `packageWeightInKg` and `destinationDistance` to `destinationDistanceInKm`
 2. Find ways to allow of insertion of `Offer` in array format instead of copy and paste `insertOffer(offer:`
 3. Clean up prints and commented codes
 4. Streamline OfferCode and OfferId to be more consistent
+5. Streamline all copied + pasted code from PackageDelivery.swift and RouteOptimizer.swift
+6. Throw error when user input duplicate packageID
+7. Throw error when input package is empty array
