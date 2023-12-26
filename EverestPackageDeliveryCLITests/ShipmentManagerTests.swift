@@ -84,4 +84,32 @@ final class RouterOptimizerTests: XCTestCase {
     XCTAssertEqual(shipmentDeliveryTime, 3.56)
   }
   
+  func testCalculatePackageDeliveryTimeForFirstBatch() {
+    let packageInfo1 = PackageInfo(packageID: "testPkg1", packageWeightInKg: 50, distanceInKm: 30, offerCode: nil)
+    let packageInfo2 = PackageInfo(packageID: "testPkg2", packageWeightInKg: 75, distanceInKm: 125, offerCode: nil)
+    let packageInfo3 = PackageInfo(packageID: "testPkg3", packageWeightInKg: 175, distanceInKm: 100, offerCode: nil)
+    let packageInfo4 = PackageInfo(packageID: "testPkg4", packageWeightInKg: 110, distanceInKm: 60, offerCode: nil)
+    let packageInfo5 = PackageInfo(packageID: "testPkg5", packageWeightInKg: 155, distanceInKm: 95, offerCode: nil)
+    
+    let deliveryTime = sut.calculatePackageDeliveryTime(vehicleSpeedInKmPerHr: 70,
+                                                         vehicleAccumulatedDeliveryTime: 0,
+                                                         package: packageInfo2)
+    XCTAssertEqual(deliveryTime, 1.78)
+    
+  }
+  
+  func testCalculatePackageDeliveryTimeForNextBatch() {
+    let packageInfo1 = PackageInfo(packageID: "testPkg1", packageWeightInKg: 50, distanceInKm: 30, offerCode: nil)
+    let packageInfo2 = PackageInfo(packageID: "testPkg2", packageWeightInKg: 75, distanceInKm: 125, offerCode: nil)
+    let packageInfo3 = PackageInfo(packageID: "testPkg3", packageWeightInKg: 175, distanceInKm: 100, offerCode: nil)
+    let packageInfo4 = PackageInfo(packageID: "testPkg4", packageWeightInKg: 110, distanceInKm: 60, offerCode: nil)
+    let packageInfo5 = PackageInfo(packageID: "testPkg5", packageWeightInKg: 155, distanceInKm: 95, offerCode: nil)
+    
+    let deliveryTime = sut.calculatePackageDeliveryTime(vehicleSpeedInKmPerHr: 70,
+                                                        vehicleAccumulatedDeliveryTime: 3.56,
+                                                        package: packageInfo1)
+    XCTAssertEqual(deliveryTime, 3.98)
+    
+  }
+  
 }

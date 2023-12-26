@@ -11,9 +11,19 @@ protocol ShipmentManagerProtocol {
   func calculateShipmentDeliveryTime(shipment: Shipment, vehicleSpeedInKmPerHr: Double) -> Double
   func getOptimalShipment(maxWeight: Double, packageArr:[PackageInfo]) -> Shipment
   func getAllShipmentLessThan(maxWeight: Double, packageArr:[PackageInfo]) -> [Shipment]
+  func calculatePackageDeliveryTime(vehicleSpeedInKmPerHr: Double, vehicleAccumulatedDeliveryTime: Double, package: PackageInfo) -> Double
 }
 
-class ShipmentManager {
+class ShipmentManager: ShipmentManagerProtocol {
+  
+  func calculatePackageDeliveryTime(vehicleSpeedInKmPerHr: Double, vehicleAccumulatedDeliveryTime: Double, package: PackageInfo) -> Double {
+    
+    let packageTime = floor(100 * (package.distanceInKm/vehicleSpeedInKmPerHr))/100
+    
+    let finalPackageTime = vehicleAccumulatedDeliveryTime + packageTime
+    
+    return finalPackageTime
+  }
   
   func calculateShipmentDeliveryTime(shipment: Shipment, vehicleSpeedInKmPerHr: Double) -> Double {
     
