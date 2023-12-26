@@ -8,7 +8,8 @@
 import Foundation
 
 struct VehicleInfo {
+  let id: Int
   let maxSpeedInKmPerHr: Double
   let maxWeight: Double
-  let accumulatedDeliveryTime: Double
+  var accumulatedDeliveryTime: Double
 }

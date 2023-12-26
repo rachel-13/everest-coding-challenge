@@ -186,14 +186,74 @@ class RouteOptimizer {
       throw SystemError.negativeNumerics
     }
     
-    for _ in 0..<numberOfVehicles {
-      let vehicle = VehicleInfo(maxSpeedInKmPerHr: maxSpeed, maxWeight: maxWeight, accumulatedDeliveryTime: 0)
+    for i in 0..<numberOfVehicles {
+      let vehicle = VehicleInfo(id: i, maxSpeedInKmPerHr: maxSpeed, maxWeight: maxWeight, accumulatedDeliveryTime: 0)
       vehicleInfoArray.append(vehicle)
     }
   }
   
   private func printOutput() {
-    // TODO: print output
+    for package in calculatePackageOutput() {
+      print(String(format: "%@ %.2f %.2f %.2f", 
+                   package.packageID,
+                   package.discountAmount,
+                   package.totalCost - package.discountAmount,
+                   package.deliveryTime))
+    }
+  }
+  
+  private func calculatePackageOutput() -> [PackageCostWithTime] {
+    
+    var outputDictionary = [String: PackageCostWithTime]()
+    var tempPackageInfoArray: [PackageInfo] = Array(packageInfoArray)
+    
+    while(tempPackageInfoArray.count > 0) {
+      
+      /// Get a vehicle first
+      let optimalShipment = shipmentManager.getOptimalShipment(maxWeight: vehicleInfoArray[0].maxWeight, packageArr: tempPackageInfoArray)
+      let allotedVehicle = vehicleInfoArray.min { lhs, rhs in
+        return lhs.accumulatedDeliveryTime <= rhs.accumulatedDeliveryTime
+      }
+      
+      /// Process all packages in Shipment
+      for packageInfo in optimalShipment.packages {
+        let originalDeliveryCost = costManager.getOriginalDeliveryCost(baseDeliveryCost: self.baseDeliveryCost ?? 0,
+                                                                       packageWeight: packageInfo.packageWeightInKg,
+                                                                       destinationDistance: packageInfo.distanceInKm)
+        var discountAmount = 0.00
+        if let offerCode = packageInfo.offerCode {
+          discountAmount = costManager.getDiscountAmount(with: offerCode,
+                                                             originalDeliveryCost: originalDeliveryCost,
+                                                             packageWeight: packageInfo.packageWeightInKg,
+                                                             destinationDistance: packageInfo.distanceInKm)
+        }
+        
+        let packageDeliveryTime = shipmentManager.calculatePackageDeliveryTime(vehicleSpeedInKmPerHr: allotedVehicle!.maxSpeedInKmPerHr, vehicleAccumulatedDeliveryTime: allotedVehicle!.accumulatedDeliveryTime, package: packageInfo)
+        
+        let packageCostWithTime = PackageCostWithTime(packageID: packageInfo.packageID,
+                                                      discountAmount: discountAmount,
+                                                      totalCost: originalDeliveryCost,
+                                                      deliveryTime: packageDeliveryTime)
+        
+        outputDictionary[packageInfo.packageID] = packageCostWithTime
+        
+        tempPackageInfoArray = tempPackageInfoArray.filter({ $0.packageID != packageInfo.packageID })
+      }
+      
+      /// Update vehicle array with total delivery time for alloted vehicle
+      vehicleInfoArray[allotedVehicle!.id].accumulatedDeliveryTime += shipmentManager.calculateShipmentDeliveryTime(shipment: optimalShipment, vehicleSpeedInKmPerHr: allotedVehicle!.maxSpeedInKmPerHr)
+      
+    }
+    
+    var resultArray = [PackageCostWithTime]()
+    
+    for packageInfo in packageInfoArray {
+      if let packageCostTime = outputDictionary[packageInfo.packageID] {
+        resultArray.append(packageCostTime)
+      }
+    }
+    
+    return resultArray
   }
   
 }

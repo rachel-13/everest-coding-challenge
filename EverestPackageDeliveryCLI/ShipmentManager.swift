@@ -10,7 +10,6 @@ import Foundation
 protocol ShipmentManagerProtocol {
   func calculateShipmentDeliveryTime(shipment: Shipment, vehicleSpeedInKmPerHr: Double) -> Double
   func getOptimalShipment(maxWeight: Double, packageArr:[PackageInfo]) -> Shipment
-  func getAllShipmentLessThan(maxWeight: Double, packageArr:[PackageInfo]) -> [Shipment]
   func calculatePackageDeliveryTime(vehicleSpeedInKmPerHr: Double, vehicleAccumulatedDeliveryTime: Double, package: PackageInfo) -> Double
 }
 
