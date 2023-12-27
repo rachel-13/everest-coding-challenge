@@ -3,6 +3,11 @@
 This README serves as a documentation of the thought process taken while setting up and developing this flow.
 
 
+## How to run each program
+
+1. For Problem 1, comment out the @main annotation on `RouteOptimizer.swift` and uncomment the one on `PackageDelivery.swift`.
+2. For Problem 2, comment out the @main annotation on `PackageDelivery.swift` and uncomment the one on `RouteOptimizer.swift`.
+
 ## Starting out
 
 There were several options to kick start this project and since using Swift to develop a command line tool is a rare scenario, documentation on the idea has been limited but it boils down to the following options:
@@ -12,13 +17,17 @@ There were several options to kick start this project and since using Swift to d
 
 After a few trials and errors, I ended up using option #2 as this was the only way I was able to get a unit test target running in order to follow TDD practices. Option #1 required all business logic to be segreated into a framework and have the command line executable depend on it, but for the context of this assignment, I would prefer to keep things simple.
 
-## Problem 1
 
 ### Assumptions:
  
 1. All distance and weights are all positive numbers. 
 2. Decimals are fair game, e.g. if a 5% discount ends up with decimals like $5.7123, it would be fair to display rounded numbers into the nearest ten-cent which is $5.70. Idea came from a business perspective where customers would not want to be charged an extra $0.30 and the business should not lose $0.70.
 3. Package IDs should be unique and distinct
+4. There were a few typos on the PDF, i.e. last page on PDF states `Delivering PKG4 (3.56+ 0.42)` but should be PKG1 instead but I made the assumption that they were typos
+5. Both problems are mutually exclusive command line applications instead of being combined to one application as the input handling is a tad different between the two. However, a lot of the handling for input/errors are copied from Problem 1 into Problem 2 with a bit more variables added on. 
+
+
+## Problem 1
 
 ### Ideas:
 
@@ -61,3 +70,5 @@ Cleanup work to do:
 5. Streamline all copied + pasted code from PackageDelivery.swift and RouteOptimizer.swift
 6. Throw error when user input duplicate packageID
 7. Throw error when input package is empty array
+
+
