@@ -139,11 +139,11 @@ class RouteOptimizer {
       throw SystemError.incorrectArgumentPackageInfo
     }
     
-    guard let packageWeight = Double(userInputArr[1]), let destinationDistance = Double(userInputArr[2]) else {
+    guard let packageWeightInKg = Double(userInputArr[1]), let destinationDistanceInKm = Double(userInputArr[2]) else {
       throw SystemError.incorrectDataType
     }
     
-    guard packageWeight >= 0, destinationDistance >= 0 else {
+    guard packageWeightInKg >= 0, destinationDistanceInKm >= 0 else {
       throw SystemError.negativeNumerics
     }
     
@@ -151,8 +151,8 @@ class RouteOptimizer {
     let offerId: String? = userInputArr.count == 4 ? userInputArr[3] : nil
     
     let packageInfo = PackageInfo(packageID: packageId,
-                                  packageWeightInKg: packageWeight,
-                                  distanceInKm: destinationDistance,
+                                  packageWeightInKg: packageWeightInKg,
+                                  distanceInKm: destinationDistanceInKm,
                                   offerId: offerId)
     self.packageInfoArray.append(packageInfo)
     numberOfPackages? -= 1
@@ -218,14 +218,14 @@ class RouteOptimizer {
       /// Process all packages in Shipment
       for packageInfo in optimalShipment.packages {
         let originalDeliveryCost = costManager.getOriginalDeliveryCost(baseDeliveryCost: self.baseDeliveryCost ?? 0,
-                                                                       packageWeight: packageInfo.packageWeightInKg,
-                                                                       destinationDistance: packageInfo.distanceInKm)
+                                                                       packageWeightInKg: packageInfo.packageWeightInKg,
+                                                                       destinationDistanceInKm: packageInfo.distanceInKm)
         var discountAmount = 0.00
         if let offerId = packageInfo.offerId {
           discountAmount = costManager.getDiscountAmount(with: offerId,
-                                                             originalDeliveryCost: originalDeliveryCost,
-                                                             packageWeight: packageInfo.packageWeightInKg,
-                                                             destinationDistance: packageInfo.distanceInKm)
+                                                         originalDeliveryCost: originalDeliveryCost,
+                                                         packageWeightInKg: packageInfo.packageWeightInKg,
+                                                         destinationDistanceInKm: packageInfo.distanceInKm)
         }
         
         let packageDeliveryTime = shipmentManager.calculatePackageDeliveryTime(vehicleSpeedInKmPerHr: allotedVehicle!.maxSpeedInKmPerHr, vehicleAccumulatedDeliveryTime: allotedVehicle!.accumulatedDeliveryTime, package: packageInfo)

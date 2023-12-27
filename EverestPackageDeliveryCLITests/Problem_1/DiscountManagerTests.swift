@@ -141,7 +141,7 @@ final class DiscountManagerTests: XCTestCase {
                        discountRateInPercent: 7)
     sut.insertOffer(offer: offer1)
     
-    let eligible = sut.checkEligibility(for: "testOffer1", packageWeight: 10, destinationDistance: 100)
+    let eligible = sut.checkEligibility(for: "testOffer1", packageWeightInKg: 10, destinationDistanceInKm: 100)
     XCTAssertTrue(eligible)
   }
   
@@ -154,7 +154,7 @@ final class DiscountManagerTests: XCTestCase {
                        discountRateInPercent: 7)
     sut.insertOffer(offer: offer1)
     
-    let eligible = sut.checkEligibility(for: "testOffer1", packageWeight: 9, destinationDistance: 100)
+    let eligible = sut.checkEligibility(for: "testOffer1", packageWeightInKg: 9, destinationDistanceInKm: 100)
     XCTAssertFalse(eligible)
   }
   
@@ -167,7 +167,7 @@ final class DiscountManagerTests: XCTestCase {
                        discountRateInPercent: 7)
     sut.insertOffer(offer: offer1)
     
-    let eligible = sut.checkEligibility(for: "testOffer1", packageWeight: 10, destinationDistance: 45)
+    let eligible = sut.checkEligibility(for: "testOffer1", packageWeightInKg: 10, destinationDistanceInKm: 45)
     XCTAssertFalse(eligible)
   }
   

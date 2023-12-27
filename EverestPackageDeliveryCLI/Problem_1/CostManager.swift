@@ -8,8 +8,8 @@
 import Foundation
 
 public protocol CostManagerProtocol {
-  func getOriginalDeliveryCost(baseDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double
-  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double
+  func getOriginalDeliveryCost(baseDeliveryCost: Double, packageWeightInKg: Double, destinationDistanceInKm: Double) -> Double
+  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeightInKg: Double, destinationDistanceInKm: Double) -> Double
 }
 
 class CostManager: CostManagerProtocol {
@@ -22,13 +22,13 @@ class CostManager: CostManagerProtocol {
     self.discountManager = discountManager
   }
   
-  func getOriginalDeliveryCost(baseDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double {
-    return baseDeliveryCost + (packageWeight * packageMultiplier) + (destinationDistance * distanceMultiplier)
+  func getOriginalDeliveryCost(baseDeliveryCost: Double, packageWeightInKg: Double, destinationDistanceInKm: Double) -> Double {
+    return baseDeliveryCost + (packageWeightInKg * packageMultiplier) + (destinationDistanceInKm * distanceMultiplier)
   }
   
-  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double {
+  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeightInKg: Double, destinationDistanceInKm: Double) -> Double {
     if let validOffer = discountManager.getOffer(withId: offerId),
-       discountManager.checkEligibility(for: validOffer.offerID, packageWeight: packageWeight, destinationDistance: destinationDistance) {
+       discountManager.checkEligibility(for: validOffer.offerID, packageWeightInKg: packageWeightInKg, destinationDistanceInKm: destinationDistanceInKm) {
       let discountAmount = discountManager.getDiscountAmount(originalDeliveryCost: originalDeliveryCost, offerId: offerId)
       return discountAmount
     }

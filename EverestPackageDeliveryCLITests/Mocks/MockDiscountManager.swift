@@ -29,7 +29,7 @@ class MockDiscountManager: DiscountManagerProtocol {
   }
   
   var stubbedEligibility = false
-  func checkEligibility(for offerId: String, packageWeight: Double, destinationDistance: Double) -> Bool {
+  func checkEligibility(for offerId: String, packageWeightInKg: Double, destinationDistanceInKm: Double) -> Bool {
     return stubbedEligibility
   }
   

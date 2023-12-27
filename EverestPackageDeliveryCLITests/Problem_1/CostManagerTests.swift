@@ -18,7 +18,7 @@ final class CostManagerTests: XCTestCase {
   }
   
   func testGetOriginalTotalDeliveryCost() {
-    let totalCost = sut.getOriginalDeliveryCost(baseDeliveryCost: 100, packageWeight: 5, destinationDistance: 5)
+    let totalCost = sut.getOriginalDeliveryCost(baseDeliveryCost: 100, packageWeightInKg: 5, destinationDistanceInKm: 5)
     XCTAssertEqual(totalCost, 175)
   }
   
@@ -33,8 +33,8 @@ final class CostManagerTests: XCTestCase {
                                              upperBoundDistanceInKm: 20,
                                              discountRateInPercent: 5)
     
-    let originalDeliveryCost = sut.getOriginalDeliveryCost(baseDeliveryCost: 100, packageWeight: 10, destinationDistance: 100)
-    let discountAmount = sut.getDiscountAmount(with: "testOffer1", originalDeliveryCost: originalDeliveryCost, packageWeight: 5, destinationDistance: 5)
+    let originalDeliveryCost = sut.getOriginalDeliveryCost(baseDeliveryCost: 100, packageWeightInKg: 10, destinationDistanceInKm: 100)
+    let discountAmount = sut.getDiscountAmount(with: "testOffer1", originalDeliveryCost: originalDeliveryCost, packageWeightInKg: 5, destinationDistanceInKm: 5)
     let discountedCost = originalDeliveryCost - discountAmount
     XCTAssertEqual(discountedCost, 665)
   }

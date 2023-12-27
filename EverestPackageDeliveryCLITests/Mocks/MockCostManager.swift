@@ -10,12 +10,12 @@ import Foundation
 class MockCostManager: CostManagerProtocol {
   
   var stubbedOriginalCost = 0.00
-  func getOriginalDeliveryCost(baseDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double {
+  func getOriginalDeliveryCost(baseDeliveryCost: Double, packageWeightInKg: Double, destinationDistanceInKm: Double) -> Double {
     return stubbedOriginalCost
   }
   
   var stubbedDiscountAmount = 0.00
-  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeight: Double, destinationDistance: Double) -> Double {
+  func getDiscountAmount(with offerId: String, originalDeliveryCost: Double, packageWeightInKg: Double, destinationDistanceInKm: Double) -> Double {
     return stubbedDiscountAmount
   }
   

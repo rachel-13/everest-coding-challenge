@@ -63,10 +63,10 @@ After a few trials and errors, I ended up using option #2 as this was the only w
 ## Refactoring or enhancements if time allows
 
 Cleanup work to do:
-1. Rename all `packageWeight` to `packageWeightInKg` and `destinationDistance` to `destinationDistanceInKm`
+1. ~~Rename all `packageWeight` to `packageWeightInKg` and `destinationDistance` to `destinationDistanceInKm`~~
 2. Find ways to allow of insertion of `Offer` in array format instead of copy and paste `insertOffer(offer:`
-3. Clean up prints and commented codes
-4. Streamline OfferCode and OfferId to be more consistent
+3. ~~Clean up prints and commented codes~~
+4. ~~Streamline OfferCode and OfferId to be more consistent~~
 5. Streamline all copied + pasted code from PackageDelivery.swift and RouteOptimizer.swift
 6. Throw error when user input duplicate packageID
 7. Throw error when input package is empty array
