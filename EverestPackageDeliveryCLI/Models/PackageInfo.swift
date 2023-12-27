@@ -11,5 +11,5 @@ struct PackageInfo {
   let packageID: String
   let packageWeightInKg: Double
   let distanceInKm: Double
-  let offerCode: String?
+  let offerId: String?
 }

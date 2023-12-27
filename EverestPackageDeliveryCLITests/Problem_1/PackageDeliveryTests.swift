@@ -110,7 +110,7 @@ final class PackageDeliveryTests: XCTestCase {
     mockCostManager.stubbedOriginalCost = 700
     mockCostManager.stubbedDiscountAmount = 35
     
-    let packageInfo = PackageInfo(packageID: "pkg1", packageWeightInKg: 10, distanceInKm: 100, offerCode: "testOffer1")
+    let packageInfo = PackageInfo(packageID: "pkg1", packageWeightInKg: 10, distanceInKm: 100, offerId: "testOffer1")
     let packageCost = sut.calculatePackageOutput(packageInfo: packageInfo)
     XCTAssertEqual(packageCost.packageID, packageInfo.packageID)
     XCTAssertEqual(packageCost.discountAmount, 35)

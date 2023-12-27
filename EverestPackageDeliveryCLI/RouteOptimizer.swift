@@ -153,7 +153,7 @@ class RouteOptimizer {
     let packageInfo = PackageInfo(packageID: packageId,
                                   packageWeightInKg: packageWeight,
                                   distanceInKm: destinationDistance,
-                                  offerCode: offerId)
+                                  offerId: offerId)
     self.packageInfoArray.append(packageInfo)
     numberOfPackages? -= 1
   }
@@ -221,8 +221,8 @@ class RouteOptimizer {
                                                                        packageWeight: packageInfo.packageWeightInKg,
                                                                        destinationDistance: packageInfo.distanceInKm)
         var discountAmount = 0.00
-        if let offerCode = packageInfo.offerCode {
-          discountAmount = costManager.getDiscountAmount(with: offerCode,
+        if let offerId = packageInfo.offerId {
+          discountAmount = costManager.getDiscountAmount(with: offerId,
                                                              originalDeliveryCost: originalDeliveryCost,
                                                              packageWeight: packageInfo.packageWeightInKg,
                                                              destinationDistance: packageInfo.distanceInKm)

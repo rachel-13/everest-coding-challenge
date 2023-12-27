@@ -151,7 +151,7 @@ class PackageDelivery {
     let packageInfo = PackageInfo(packageID: packageId,
                                   packageWeightInKg: packageWeight,
                                   distanceInKm: destinationDistance,
-                                  offerCode: offerId)
+                                  offerId: offerId)
     self.packageInfoArray.append(packageInfo)
     numberOfPackages? -= 1
   }
@@ -169,8 +169,8 @@ class PackageDelivery {
                                                                    packageWeight: packageInfo.packageWeightInKg,
                                                                    destinationDistance: packageInfo.distanceInKm)
     
-    if let offerCode = packageInfo.offerCode {
-      let discountAmount = costManager.getDiscountAmount(with: offerCode,
+    if let offerId = packageInfo.offerId {
+      let discountAmount = costManager.getDiscountAmount(with: offerId,
                                                          originalDeliveryCost: originalDeliveryCost,
                                                          packageWeight: packageInfo.packageWeightInKg,
                                                          destinationDistance: packageInfo.distanceInKm)

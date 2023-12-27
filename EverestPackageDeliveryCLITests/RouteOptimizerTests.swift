@@ -151,4 +151,8 @@ final class RouteOptimizerTests: XCTestCase {
     XCTAssertTrue(mockErrorHandler.didCallDisplayError)
     XCTAssertEqual(sut.packageInfoArray.count, 0)
   }
+  
+  func testCalculatePackageOutput() {
+    
+  }
 }
