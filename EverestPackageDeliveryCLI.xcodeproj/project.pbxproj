@@ -12,6 +12,10 @@
 		5E2A3CF72B2C587D0091D200 /* Offer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF62B2C587D0091D200 /* Offer.swift */; };
 		5E2A3CF92B2C58AF0091D200 /* PackageInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */; };
 		5E2A3CFB2B2C5B4D0091D200 /* PackageCost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */; };
+		5E60BD752B3D5043007CF3BA /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60BD742B3D5043007CF3BA /* InputHandler.swift */; };
+		5E60BD762B3D5043007CF3BA /* InputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60BD742B3D5043007CF3BA /* InputHandler.swift */; };
+		5E60BD782B3D54C7007CF3BA /* InputHandlerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60BD772B3D54C7007CF3BA /* InputHandlerTests.swift */; };
+		5E60BD7A2B3D5531007CF3BA /* MockInputHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E60BD792B3D5531007CF3BA /* MockInputHandler.swift */; };
 		5E63FA472B31964A00BF2092 /* RouteOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */; };
 		5E63FA482B31964A00BF2092 /* RouteOptimizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */; };
 		5E63FA4E2B319E2500BF2092 /* ShipmentManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E63FA4D2B319E2500BF2092 /* ShipmentManagerTests.swift */; };
@@ -72,6 +76,9 @@
 		5E2A3CF62B2C587D0091D200 /* Offer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offer.swift; sourceTree = "<group>"; };
 		5E2A3CF82B2C58AF0091D200 /* PackageInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageInfo.swift; sourceTree = "<group>"; };
 		5E2A3CFA2B2C5B4D0091D200 /* PackageCost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PackageCost.swift; sourceTree = "<group>"; };
+		5E60BD742B3D5043007CF3BA /* InputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandler.swift; sourceTree = "<group>"; };
+		5E60BD772B3D54C7007CF3BA /* InputHandlerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputHandlerTests.swift; sourceTree = "<group>"; };
+		5E60BD792B3D5531007CF3BA /* MockInputHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockInputHandler.swift; sourceTree = "<group>"; };
 		5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteOptimizer.swift; sourceTree = "<group>"; };
 		5E63FA4D2B319E2500BF2092 /* ShipmentManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentManagerTests.swift; sourceTree = "<group>"; };
 		5E63FA552B38780300BF2092 /* Shipment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shipment.swift; sourceTree = "<group>"; };
@@ -133,6 +140,7 @@
 				5E2A3CF52B2C584E0091D200 /* Models */,
 				5E63FA462B31964A00BF2092 /* RouteOptimizer.swift */,
 				5E63FA5B2B39D87100BF2092 /* ShipmentManager.swift */,
+				5E60BD742B3D5043007CF3BA /* InputHandler.swift */,
 			);
 			path = EverestPackageDeliveryCLI;
 			sourceTree = "<group>";
@@ -144,6 +152,7 @@
 				5ECFDFC72B3030540009A6B9 /* Mocks */,
 				5E63FA4D2B319E2500BF2092 /* ShipmentManagerTests.swift */,
 				5E63FA612B3AB1D300BF2092 /* RouteOptimizerTests.swift */,
+				5E60BD772B3D54C7007CF3BA /* InputHandlerTests.swift */,
 			);
 			path = EverestPackageDeliveryCLITests;
 			sourceTree = "<group>";
@@ -189,6 +198,7 @@
 				5ECFDFC82B3038880009A6B9 /* MockDiscountManager.swift */,
 				5ECFDFD42B3188160009A6B9 /* MockCostManager.swift */,
 				5E63FA632B3AB22E00BF2092 /* MockShipmentManager.swift */,
+				5E60BD792B3D5531007CF3BA /* MockInputHandler.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -295,6 +305,7 @@
 				5ECFDFCB2B3038960009A6B9 /* DiscountManager.swift in Sources */,
 				5E2A3CE42B2B68390091D200 /* PackageDelivery.swift in Sources */,
 				5E63FA5C2B39D87100BF2092 /* ShipmentManager.swift in Sources */,
+				5E60BD752B3D5043007CF3BA /* InputHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -309,6 +320,7 @@
 				5ECFDFCE2B303C610009A6B9 /* DiscountManagerTests.swift in Sources */,
 				5E63FA5A2B3879BD00BF2092 /* Shipment.swift in Sources */,
 				5E63FA642B3AB22E00BF2092 /* MockShipmentManager.swift in Sources */,
+				5E60BD762B3D5043007CF3BA /* InputHandler.swift in Sources */,
 				5E63FA602B3A909F00BF2092 /* PackageCostWithTime.swift in Sources */,
 				5ECFDFD02B304E490009A6B9 /* CostManagerTests.swift in Sources */,
 				5ECFDFC22B3026B10009A6B9 /* MockErrorHandler.swift in Sources */,
@@ -318,9 +330,11 @@
 				5ECFDFC92B3038880009A6B9 /* MockDiscountManager.swift in Sources */,
 				5E63FA4E2B319E2500BF2092 /* ShipmentManagerTests.swift in Sources */,
 				5ECFDFD32B304EAD0009A6B9 /* CostManager.swift in Sources */,
+				5E60BD7A2B3D5531007CF3BA /* MockInputHandler.swift in Sources */,
 				5ECFDFB72B2FE98B0009A6B9 /* PackageDelivery.swift in Sources */,
 				5E2A3CF12B2B68520091D200 /* PackageDeliveryTests.swift in Sources */,
 				5ECFDFC62B3026BF0009A6B9 /* PackageCost.swift in Sources */,
+				5E60BD782B3D54C7007CF3BA /* InputHandlerTests.swift in Sources */,
 				5ECFDFC52B3026BE0009A6B9 /* PackageInfo.swift in Sources */,
 				5ECFDFC42B3026BC0009A6B9 /* Offer.swift in Sources */,
 			);

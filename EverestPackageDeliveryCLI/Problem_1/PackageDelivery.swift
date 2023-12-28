@@ -7,7 +7,7 @@
 
 import Foundation
 
-//@main
+@main
 class PackageDelivery {
   
   var isMetadataSet = false
@@ -16,6 +16,7 @@ class PackageDelivery {
   var packageInfoArray: [PackageInfo] = [PackageInfo]()
   let errorHandler: ErrorHandlerProtocol
   let costManager: CostManagerProtocol
+  let inputHandler: InputHandlerProtocol
   
   static func main() {
     
@@ -49,13 +50,16 @@ class PackageDelivery {
     
     let costManager = CostManager(discountManager: discountManager)
     
-    let packageDelivery = PackageDelivery(errorHandler: errorHandler, costManager: costManager)
+    let inputHandler = InputHandler()
+    
+    let packageDelivery = PackageDelivery(errorHandler: errorHandler, costManager: costManager, inputHandler: inputHandler)
     packageDelivery.run()
   }
   
-  init(errorHandler: ErrorHandlerProtocol, costManager: CostManagerProtocol) {
+  init(errorHandler: ErrorHandlerProtocol, costManager: CostManagerProtocol, inputHandler: InputHandlerProtocol) {
     self.errorHandler = errorHandler
     self.costManager = costManager
+    self.inputHandler = inputHandler
   }
   
   func run() {
@@ -73,87 +77,31 @@ class PackageDelivery {
         break
       }
       
-      if !isMetadataSet {
-        handleMetadata(line: line)
-      } else if let noOfPackages = numberOfPackages, noOfPackages > 0 {
-        handlePackageInfo(line: line)
-        
-        if numberOfPackages == 0 {
-          print("Your package discount and costs are:")
-          printOutput()
-          break
+      do {
+        if !isMetadataSet {
+          let tuple = try inputHandler.handleMetadata(line: line)
+          self.baseDeliveryCost = tuple.0
+          self.numberOfPackages = tuple.1
+          isMetadataSet = true
+        } else if let noOfPackages = numberOfPackages, noOfPackages > 0 {
+          let packageInfo = try inputHandler.handlePackageInfo(line: line)
+          self.packageInfoArray.append(packageInfo)
+          numberOfPackages? -= 1
+          
+          if numberOfPackages == 0 {
+            print("Your package discount and costs are:")
+            printOutput()
+            break
+          }
         }
+      } catch (let error) {
+        guard let err = error as? SystemError else {
+          errorHandler.displayError(error: SystemError.unknown)
+          return
+        }
+        errorHandler.displayError(error: err)
       }
     }
-  }
-  
-  func handleMetadata(line: String) {
-    do {
-      try setupMetadata(line: line)
-    } catch (let error) {
-      guard let err = error as? SystemError else {
-        return
-      }
-      errorHandler.displayError(error: err)
-    }
-  }
-  
-  private func setupMetadata(line: String) throws {
-    let userInputArr = line.components(separatedBy: " ")
-    
-    guard userInputArr.count == 2 else  {
-      throw SystemError.incorrectArgumentMetadata
-    }
-    
-    guard let baseDeliveryCost = Double(userInputArr[0]), let numberOfPackages = Int(userInputArr[1]) else {
-      throw SystemError.incorrectDataType
-    }
-    
-    guard baseDeliveryCost >= 0, numberOfPackages >= 0 else {
-      throw SystemError.negativeNumerics
-    }
-    
-    self.baseDeliveryCost = baseDeliveryCost
-    self.numberOfPackages = numberOfPackages
-    
-    isMetadataSet = true
-  }
-  
-  func handlePackageInfo(line: String) {
-    do {
-      try setupPackageInfo(line: line)
-    } catch (let error) {
-      guard let err = error as? SystemError else {
-        return
-      }
-      errorHandler.displayError(error: err)
-    }
-  }
-  
-  private func setupPackageInfo(line: String) throws {
-    let userInputArr = line.components(separatedBy: " ")
-    
-    guard userInputArr.count == 3 || userInputArr.count == 4 else  {
-      throw SystemError.incorrectArgumentPackageInfo
-    }
-    
-    guard let packageWeightInKg = Double(userInputArr[1]), let destinationDistanceInKm = Double(userInputArr[2]) else {
-      throw SystemError.incorrectDataType
-    }
-    
-    guard packageWeightInKg >= 0, destinationDistanceInKm >= 0 else {
-      throw SystemError.negativeNumerics
-    }
-     
-    let packageId = userInputArr[0]
-    let offerId: String? = userInputArr.count == 4 ? userInputArr[3] : nil
-    
-    let packageInfo = PackageInfo(packageID: packageId,
-                                  packageWeightInKg: packageWeightInKg,
-                                  distanceInKm: destinationDistanceInKm,
-                                  offerId: offerId)
-    self.packageInfoArray.append(packageInfo)
-    numberOfPackages? -= 1
   }
   
   private func printOutput() {
@@ -169,15 +117,15 @@ class PackageDelivery {
                                                                    packageWeightInKg: packageInfo.packageWeightInKg,
                                                                    destinationDistanceInKm: packageInfo.distanceInKm)
     
+    var discountAmount = 0.00
     if let offerId = packageInfo.offerId {
-      let discountAmount = costManager.getDiscountAmount(with: offerId,
+      discountAmount = costManager.getDiscountAmount(with: offerId,
                                                          originalDeliveryCost: originalDeliveryCost,
                                                          packageWeightInKg: packageInfo.packageWeightInKg,
                                                          destinationDistanceInKm: packageInfo.distanceInKm)
-      return PackageCost(packageID: packageInfo.packageID, discountAmount: discountAmount, totalCost: originalDeliveryCost)
     }
     
-    return PackageCost(packageID: packageInfo.packageID, discountAmount: 0, totalCost: originalDeliveryCost)
+    return PackageCost(packageID: packageInfo.packageID, discountAmount: discountAmount, totalCost: originalDeliveryCost)
   }
 }
 

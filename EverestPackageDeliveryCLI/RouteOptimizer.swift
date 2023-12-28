@@ -7,7 +7,7 @@
 
 import Foundation
 
-@main
+//@main
 class RouteOptimizer {
   
   var isMetadataSet = false
