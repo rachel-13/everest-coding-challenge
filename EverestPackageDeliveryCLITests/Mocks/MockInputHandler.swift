@@ -8,7 +8,7 @@
 import Foundation
 
 class MockInputHandler: InputHandlerProtocol {
-  
+ 
   var stubbedMetadata = (0.0, 0)
   func handleMetadata(line: String) throws -> (Double, Int) {
     return stubbedMetadata
@@ -19,5 +19,8 @@ class MockInputHandler: InputHandlerProtocol {
     return stubbedPackageInfo
   }
   
-  
+  var stubbedVehicleInfo = [VehicleInfo]()
+  func handleVehicleInfo(line: String) throws -> [VehicleInfo] {
+    return stubbedVehicleInfo
+  }
 }

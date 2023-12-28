@@ -79,7 +79,6 @@ final class InputHandlerTests: XCTestCase {
       
     }
   }
-  
 
   func testSetupPackageInfo_withNoOffers_succeeds() {
     
@@ -110,6 +109,57 @@ final class InputHandlerTests: XCTestCase {
       _ = try sut.handlePackageInfo(line: "PKG1 5 -5")
     } catch (let error) {
       XCTAssertEqual(error as? SystemError, SystemError.negativeNumerics)
+    }
+  }
+  
+  func testSetupVehicleInfo() {
+    let result = try? sut.handleVehicleInfo(line: "2 70 200")
+    
+    XCTAssertEqual(result?.count, 2)
+  }
+  
+  func testSetupVehicleInfo_negativeNumberOfVehicles() {
+    
+    do {
+      _ = try sut.handleVehicleInfo(line: "-2 70 200")
+    } catch (let error) {
+      XCTAssertEqual(error as? SystemError, SystemError.negativeNumerics)
+    }
+  }
+
+  func testSetupVehicleInfo_negativeMaxSpeed() {
+    
+    do {
+      _ = try sut.handleVehicleInfo(line: "2 -70 200")
+    } catch (let error) {
+      XCTAssertEqual(error as? SystemError, SystemError.negativeNumerics)
+    }
+  }
+  
+  func testSetupVehicleInfo_negativeMaxWeight() {
+    
+    do {
+      _ = try sut.handleVehicleInfo(line: "2 70 -200")
+    } catch (let error) {
+      XCTAssertEqual(error as? SystemError, SystemError.negativeNumerics)
+    }
+  }
+  
+  func testSetupVehicleInfo_incorrectNumberOfArguments() {
+    
+    do {
+      _ = try sut.handleVehicleInfo(line: "2 70")
+    } catch (let error) {
+      XCTAssertEqual(error as? SystemError, SystemError.incorrectArgumentVehicleInfo)
+    }
+  }
+  
+  func testSetupVehicleInfo_incorrectDataType() {
+    
+    do {
+      _ = try sut.handleVehicleInfo(line: "2 70 abc")
+    } catch (let error) {
+      XCTAssertEqual(error as? SystemError, SystemError.incorrectDataType)
     }
   }
 }

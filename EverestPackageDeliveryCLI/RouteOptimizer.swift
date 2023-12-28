@@ -18,6 +18,7 @@ class RouteOptimizer {
   let errorHandler: ErrorHandlerProtocol
   let costManager: CostManagerProtocol
   let shipmentManager: ShipmentManagerProtocol
+  let inputHandler: InputHandlerProtocol
   
   static func main() {
     
@@ -53,14 +54,17 @@ class RouteOptimizer {
     
     let shipmentManager = ShipmentManager()
     
-    let routeOptimizer = RouteOptimizer(errorHandler: errorHandler, costManager: costManager, shipmentManager: shipmentManager)
+    let inputHandler = InputHandler()
+    
+    let routeOptimizer = RouteOptimizer(errorHandler: errorHandler, costManager: costManager, shipmentManager: shipmentManager, inputHandler: inputHandler)
     routeOptimizer.run()
   }
   
-  init(errorHandler: ErrorHandlerProtocol, costManager: CostManagerProtocol, shipmentManager: ShipmentManagerProtocol) {
+  init(errorHandler: ErrorHandlerProtocol, costManager: CostManagerProtocol, shipmentManager: ShipmentManagerProtocol, inputHandler: InputHandlerProtocol) {
     self.errorHandler = errorHandler
     self.costManager = costManager
     self.shipmentManager = shipmentManager
+    self.inputHandler = inputHandler
   }
   
   func run() {
@@ -78,117 +82,28 @@ class RouteOptimizer {
         break
       }
       
-      if !isMetadataSet {
-        handleMetadata(line: line)
-      } else if let noOfPackages = numberOfPackages, noOfPackages > 0 {
-        handlePackageInfo(line: line)
-      } else {
-        handleVehicleInfo(line: line)
-        printOutput()
+      do {
+        if !isMetadataSet {
+          let tuple = try inputHandler.handleMetadata(line: line)
+          self.baseDeliveryCost = tuple.0
+          self.numberOfPackages = tuple.1
+          isMetadataSet = true
+        } else if let noOfPackages = numberOfPackages, noOfPackages > 0 {
+          let packageInfo = try inputHandler.handlePackageInfo(line: line)
+          self.packageInfoArray.append(packageInfo)
+          numberOfPackages? -= 1
+        } else {
+          vehicleInfoArray = try inputHandler.handleVehicleInfo(line: line)
+          printOutput()
+        }
+      } catch (let error) {
+        guard let err = error as? SystemError else {
+          errorHandler.displayError(error: SystemError.unknown)
+          return
+        }
+        errorHandler.displayError(error: err)
       }
-    }
-  }
-  
-  func handleMetadata(line: String) {
-    do {
-      try setupMetadata(line: line)
-    } catch (let error) {
-      guard let err = error as? SystemError else {
-        return
-      }
-      errorHandler.displayError(error: err)
-    }
-  }
-  
-  private func setupMetadata(line: String) throws {
-    let userInputArr = line.components(separatedBy: " ")
-    
-    guard userInputArr.count == 2 else  {
-      throw SystemError.incorrectArgumentMetadata
-    }
-    
-    guard let baseDeliveryCost = Double(userInputArr[0]), let numberOfPackages = Int(userInputArr[1]) else {
-      throw SystemError.incorrectDataType
-    }
-    
-    guard baseDeliveryCost >= 0, numberOfPackages >= 0 else {
-      throw SystemError.negativeNumerics
-    }
-    
-    self.baseDeliveryCost = baseDeliveryCost
-    self.numberOfPackages = numberOfPackages
-    
-    isMetadataSet = true
-  }
-  
-  func handlePackageInfo(line: String) {
-    do {
-      try setupPackageInfo(line: line)
-    } catch (let error) {
-      guard let err = error as? SystemError else {
-        return
-      }
-      errorHandler.displayError(error: err)
-    }
-  }
-  
-  private func setupPackageInfo(line: String) throws {
-    let userInputArr = line.components(separatedBy: " ")
-    
-    guard userInputArr.count == 3 || userInputArr.count == 4 else  {
-      throw SystemError.incorrectArgumentPackageInfo
-    }
-    
-    guard let packageWeightInKg = Double(userInputArr[1]), let destinationDistanceInKm = Double(userInputArr[2]) else {
-      throw SystemError.incorrectDataType
-    }
-    
-    guard packageWeightInKg >= 0, destinationDistanceInKm >= 0 else {
-      throw SystemError.negativeNumerics
-    }
-    
-    let packageId = userInputArr[0]
-    let offerId: String? = userInputArr.count == 4 ? userInputArr[3] : nil
-    
-    let packageInfo = PackageInfo(packageID: packageId,
-                                  packageWeightInKg: packageWeightInKg,
-                                  distanceInKm: destinationDistanceInKm,
-                                  offerId: offerId)
-    self.packageInfoArray.append(packageInfo)
-    numberOfPackages? -= 1
-  }
-  
-  func handleVehicleInfo(line: String) {
-    do {
-      try setupVehicleInfo(line: line)
-    } catch (let error) {
-      guard let err = error as? SystemError else {
-        return
-      }
-      errorHandler.displayError(error: err)
-    }
-  }
-  
-  private func setupVehicleInfo(line: String) throws {
-    let userInputArr = line.components(separatedBy: " ")
-    
-    guard userInputArr.count == 3 else  {
-      throw SystemError.incorrectArgumentVehicleInfo
-    }
-    
-    guard let numberOfVehicles = Int(userInputArr[0]),
-            let maxSpeed = Double(userInputArr[1]),
-            let maxWeight = Double(userInputArr[2]) else {
-      throw SystemError.incorrectDataType
-    }
-    
-    guard numberOfVehicles >= 0, maxSpeed >= 0, maxWeight >= 0 else {
-      throw SystemError.negativeNumerics
-    }
-    
-    for i in 0..<numberOfVehicles {
-      let vehicle = VehicleInfo(id: i, maxSpeedInKmPerHr: maxSpeed, maxWeight: maxWeight, accumulatedDeliveryTime: 0)
-      vehicleInfoArray.append(vehicle)
+     
     }
   }
   
@@ -245,8 +160,8 @@ class RouteOptimizer {
       
     }
     
+    /// parse output to match input order
     var resultArray = [PackageCostWithTime]()
-    
     for packageInfo in packageInfoArray {
       if let packageCostTime = outputDictionary[packageInfo.packageID] {
         resultArray.append(packageCostTime)

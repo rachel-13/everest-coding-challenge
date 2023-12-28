@@ -10,6 +10,7 @@ import Foundation
 protocol InputHandlerProtocol {
   func handleMetadata(line: String) throws -> (Double, Int)
   func handlePackageInfo(line: String) throws -> PackageInfo
+  func handleVehicleInfo(line: String) throws -> [VehicleInfo]
 }
 
 class InputHandler: InputHandlerProtocol {
@@ -59,4 +60,28 @@ class InputHandler: InputHandlerProtocol {
     return packageInfo
   }
   
+  func handleVehicleInfo(line: String) throws -> [VehicleInfo] {
+    let userInputArr = line.components(separatedBy: " ")
+    
+    guard userInputArr.count == 3 else  {
+      throw SystemError.incorrectArgumentVehicleInfo
+    }
+    
+    guard let numberOfVehicles = Int(userInputArr[0]),
+          let maxSpeed = Double(userInputArr[1]),
+          let maxWeight = Double(userInputArr[2]) else {
+      throw SystemError.incorrectDataType
+    }
+    
+    guard numberOfVehicles >= 0, maxSpeed >= 0, maxWeight >= 0 else {
+      throw SystemError.negativeNumerics
+    }
+    
+    var vehicleInfoArray = [VehicleInfo]()
+    for i in 0..<numberOfVehicles {
+      let vehicle = VehicleInfo(id: i, maxSpeedInKmPerHr: maxSpeed, maxWeight: maxWeight, accumulatedDeliveryTime: 0)
+      vehicleInfoArray.append(vehicle)
+    }
+    return vehicleInfoArray
+  }
 }
